@@ -2,7 +2,7 @@
 ___
 # Title: PANDS Project 2021 
 # Author: Betty Attwood G00398300
-![GMIT LOGO] (gmit_logo.png)
+![GMIT_LOGO](gmit_logo.png)
 ___
 ## About the Project:
 This project analyses the well-known Fisher’s Iris data set [1] using Python [2]. This repository documents the researching of the data set, the documentation, and the code (in Pytho) used to investigate it.  
@@ -19,7 +19,7 @@ Fisher's Iris data set is well known because it provides a manageably small but 
 Ronald Aylmer Fisher, later knighted for his work in statistics [3], wrote a paper in 1936 in which the Iris data set first appears titled "The use of multiple measurements in taxonomic problems" [5]. The dataset is a balanced dataset consisting of 150 samples. It is considered a balanced data set because it breaks down into 50 samples from each of three species of Iris (*Iris setosa, Iris versicolor, and Iris virginica*) [5].  
 The samples were provided with permission by Dr Edgar Anderson, who picked and measured two of the three species on the Gaspé Peninsula in Canada. The data he collected for each sample included sepal length, sepal width, petal length, petal width, and the species.  
 
-![Image of Three Species with Petal and Sepals Labeled] (Image3SpeciesTypesPetalSepal.png)
+![Image of Three Species with Petal and Sepals Labeled](Image3SpeciesTypesPetalSepal.png)
 
 # References
 [1] UC Irvine Machine Learning Repository. Iris data set.
