@@ -38,9 +38,11 @@ http://archive.ics.uci.edu/ml/datasets/Iris.  [Accessed 9 April 2021]
 [7] SAS. (2021). 'What is Data Mining?' Available: https://www.sas.com/en_ie/insights/analytics/data-mining.html [Accessed 17 April 2021]
 
 # 2 Analysing the Iris Data Set
-## 2.1 Setting Up the Environment, & Libraries & Modules
+## 2.1 Setting Up the Environment, & Libraries & Modules  
+
 ___Downloading the Dataset___
 Before beginning the analysis, the data set had to be downloaded. It is available from UCI Machine Learning Repository or can be loaded in Pythopn using sk-learn. As the dataset is requested to be uploaded to the repository I downloaded the file from UCI Machine Learning Database as a .data file. These .data files hold data in either comma seperated value (.csv) format or in tab seperated value format and the data may be in text or binary format [1]. The iris.data file opened in VS Code in csv format and was in text.  
+
 ___The Programming Environment___
 
 I completed the project using Python 3.8.5 via Conda 4.9.2.  
@@ -64,21 +66,27 @@ These libraries were imported using the follow code:
 
 Informatiom about the libraries imported and their relevance to the project:  
 
-? PIP ?
 
--pandas: Pandas is a library specifically for working with data sets. It helps with analyzing, cleaning, exploring, and manipulating data [3]. 
--numpy: NumPy stands for numberical Python and is particularly useful as its `nparray` feature allows for speed in dealing with arrays. [2]
+-pandas: Pandas is a library specifically for working with data sets. It helps with analyzing, cleaning, exploring, and manipulating data [3].   
+
+-numpy: NumPy stands for numberical Python and is particularly useful as its `nparray` feature allows for speed in dealing with arrays. [2]  
+
 -matplotlib: MatPlotLib is a low level graph plotting function that allows for visualisation of data in plot format. Many of the most useful functions are under the submodule `pyplot` often downloaded as `plt`  [4]
     import matplotlib.pyplot as plt  
-This library is useful for making some of the simpler plots to illustrate the dataset.  
--seaborn: Seaborn library works with matplotlib and its strengths lay in visualising random distributions [5].
--sklearn: Scikit Learn (sklearn) is a machine learning library. It is a predicitive data analysis tool built on NumPy, SciPy, and Matplotlib [6]. It also has the iris data set as one of its built-in data set options.
+This library is useful for making some of the simpler plots to illustrate the dataset.   
+
+-seaborn: Seaborn library works with matplotlib and its strengths lay in visualising random distributions [5].  
+
+-sklearn: Scikit Learn (sklearn) is a machine learning library. It is a predicitive data analysis tool built on NumPy, SciPy, and Matplotlib [6]. It also has the iris data set as one of its built-in data set options.   
 
 
-## References for Part 2
-[1] AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021]
-[2] w3schools.com "NumPy Introduction" Available: https://www.w3schools.com/python/numpy/numpy_intro.asp [Accessed 18 April 2021]. 
-[3] w3schools.com "Pandas Introduction" Available: https://www.w3schools.com/python/pandas/pandas_intro.asp  [Accessed 18 April 2021]. 
-[4] w3schools.com "Matplotlib Introduction" Available: https://www.w3schools.com/python/matplotlib_intro.asp [Accessed 18 April 2021]. 
-[5] w3schools.com "Seaborn Module" Available: https://www.w3schools.com/python/numpy/numpy_random_seaborn.asp [Accessed 18 April 2021]. 
-[6] Scikit-learn.org "Scikit=Learn Tutorial" Available: https://scikit-learn.org/stable/tutorial/basic/tutorial.html [Accessed 18 April 2021].
+
+
+## References for Part 2  
+
+[1] AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021]  
+[2] w3schools.com "NumPy Introduction" Available: https://www.w3schools.com/python/numpy/numpy_intro.asp [Accessed 18 April 2021].   
+[3] w3schools.com "Pandas Introduction" Available: https://www.w3schools.com/python/pandas/pandas_intro.asp  [Accessed 18 April 2021].   
+[4] w3schools.com "Matplotlib Introduction" Available: https://www.w3schools.com/python/matplotlib_intro.asp [Accessed 18 April 2021].   
+[5] w3schools.com "Seaborn Module" Available: https://www.w3schools.com/python/numpy/numpy_random_seaborn.asp [Accessed 18 April 2021].   
+[6] Scikit-learn.org "Scikit=Learn Tutorial" Available: https://scikit-learn.org/stable/tutorial/basic/tutorial.html [Accessed 18 April 2021].  
