@@ -17,10 +17,10 @@ This project forms part of the coursework required for the module Programming & 
 
 # Breakdown of Tasks
 
-Break down Tasked based on Project Objectives:
-• outputs a summary of each variable to a single text file,
-• saves a histogram of each variable to png files, and
-• outputs a scatter plot of each pair of variables.  
+Break down Tasked based on Project Objectives:  
+• outputs a summary of each variable to a single text file,  
+• saves a histogram of each variable to png files, and  
+• outputs a scatter plot of each pair of variables.    
 
 First Consideration: Framework  
 
@@ -58,7 +58,7 @@ Image Credit *Plural Sight* [6]
 
 Fisher's Iris data set is an ideal starting point for learning data mining techniques. Data mining is digging through data to look for connections and predict trends. SAS notes data mining is a culmination of "three intertwined scientific disciplines: statistics (the numeric study of data relationships), artificial intelligence (human-like intelligence displayed by software and/or machines) and machine learning (algorithms that can learn from data to make predictions)" [7]. Machine Learning is a popular area of use as the data set is ideal for teaching beginners principles of machine learning as well as serving as an ideal test for new sorting and classifying methods. It is so commonly used that the machine learning library for Python Scikit-Learn (sk-learn) includes it as one of the loadable data sets. The data set is also freely available for download and use from UC Irvine's Machine Learning Repository [1]. UC Irvine's Machine Learning Repository enumerates the many published papers that reference this dataset showing the wide range of domains it is used in especially in the domains of computer science and statistics [1]. 
 
-# References for Part 1:  
+### References for Part 1:  
 
 [1] UC Irvine Machine Learning Repository. Iris data set.
 http://archive.ics.uci.edu/ml/datasets/Iris.  [Accessed 9 April 2021]  
@@ -115,7 +115,7 @@ This library is useful for making some of the simpler plots to illustrate the da
 
 
 
-## References for Part 2.1:
+### References for Part 2.1:
 
 [1] AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021]   
 [2] w3schools.com "NumPy Introduction" Available: https://www.w3schools.com/python/numpy/numpy_intro.asp [Accessed 18 April 2021].     
@@ -124,7 +124,7 @@ This library is useful for making some of the simpler plots to illustrate the da
 [5] w3schools.com "Seaborn Module" Available: https://www.w3schools.com/python/numpy/numpy_random_seaborn.asp [Accessed 18 April 2021].   
 [6] Scikit-learn.org "Scikit=Learn Tutorial" Available: https://scikit-learn.org/stable/tutorial/basic/tutorial.html [Accessed 18 April 2021].  
 
-## 2.2 Importing the Data Set  
+### 2.2 Importing the Data Set  
 
 Once the libraries have been added and the data set downnloaded from UCI's Machine Learning Repository,
 the next step is to save the UCI `.data` file into my repository folder and to read it into my ``analysis.py`` file.  
@@ -132,7 +132,7 @@ the next step is to save the UCI `.data` file into my repository folder and to r
 There are several methods for opening the Iris data set in a Python program that I encountered while researching. I chose to import pandas as `pd` and use the read in function [1] as the  iris.data file is structured in a csv format [4]: `pd.read_csv()`.  
 I chose this method because it is straightforward and the pandas module is a foundational library for data analysis. Other options for importing including using JSON or pickle [4], but the pandas method seemed sufficient for this task. Also, pandas did not involve the more complicated capabilities of scikit-learn which might not be necessary at the beginner level[2] or the extra conversion steps of shutil and loss of metadata [3] which were other options for completing this task. 
 
-## Referenences for Part 2.2  
+### Referenences for Part 2.2  
 
 [1] w3schools.com "Pandas Tutorial" Available: https://www.w3schools.com/python/pandas/pandas_csv.asp [Accessed 19 April 2021]  
 [2] Scikit-Learn.org "Loading Iris Data Set" Available: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html [Accessed 19 April 2021].    
@@ -140,16 +140,26 @@ I chose this method because it is straightforward and the pandas module is a fou
 [4]  AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021].  
 
 
-# 2.3 Analysing: Parsing the dataset
+# 2.3 Analysing: Parsing the dataset  
 
-One of the primary objectives of the project is to analyse the data using python and to generate a summary of the data in `.txt` file format. I used the `with open()` method of populating my data to a .txt file [1]. This method was chosen because it will automatically close the file once I leave the block [2].  
+The csv dataset read in from the `.data` file is named as a variable, irisData, and then I created a dataframe, df, for it [4] The dataframe allows for two dimensional labeled data structures with columns of potentially different types [5].:  
+    irisData = pd.read_csv('iris.data', names =["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"])  # reading in the data file 
+    df = pd.DataFrame(irisData)  
+
+
+One of the primary objectives of the project is to analyse the data using python and to generate a summary of the data in `.txt` file format. I used the `with open()` method of populating my data to a .txt file [1]. This method was chosen because it will automatically close the file once I leave the block [2].   
 
 The code used is: 
 `with open("iris_summary.txt", "w") as f:`  
-The write ("w) option was chosen as I want the program to create the file if it does not already exist and write over it each time the program is ran [3]. This is important because if changes are made to the dataset, the information in the `.txt` file will be automatically updated when the program is ran with the new data.
+The write ("w) option was chosen as I want the program to create the file if it does not already exist and write over it each time the program is ran [3]. This is important because if changes are made to the dataset, the information in the `.txt` file will be automatically updated when the program is ran with the new data.  
+
+In Progress: Issues with reading in -- tried .df and didnt work -- tried without and got errors but solved with using str to convert tuples into writeable format. Add step by step instructions here. shape - w3schools.com "Numpy Array Shape" Available: https://www.w3schools.com/python/numpy/numpy_array_shape.asp [Accessed 19 April 2021]. Pandas Dataframe.info would not print to the doc pandas.pydata.org "Pandas DataFrame.Info" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html [Accessed 19 April 2021].  learndatasci.org Pandas Python Tutorial Available: https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/  [Accessed 19 April 2021]. 
+
 
 ### References for Part 2.3  
 
 [1] RealPython.com "Python With Open As Pattern" Available: https://realpython.com/working-with-files-in-python/#pythons-with-open-as-pattern  [Accessed 19 April 2021].      
 [2] Mertz, J. RealPython.com "Reading and Writing Files in Python (Guide)" Available: https://realpython.com/read-write-files-python/  [Accessed 19 April 2021].  
 [3] w3schools.com. "Python File Write" Available: https://www.w3schools.com/python/python_file_write.asp [Accessed 19 April 2021].  
+[4] w3resource.com "Pandas DataFrame: to_string() function" Available: https://www.w3resource.com/pandas/dataframe/dataframe-to_string.php [Accessed 19 April 2021].  
+[5] Datacamp. Pandas Tutorial: DataFrames in Python Available: https://www.datacamp.com/community/tutorials/pandas-tutorial-dataframe-python [Accessed 19 April 2021].  
