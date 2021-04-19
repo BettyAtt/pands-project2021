@@ -15,13 +15,41 @@ This project forms part of the coursework required for the module Programming & 
 4. 
 5. 
 
+# Breakdown of Tasks
+
+Break down Tasked based on Project Objectives:
+• outputs a summary of each variable to a single text file,
+• saves a histogram of each variable to png files, and
+• outputs a scatter plot of each pair of variables.  
+
+First Consideration: Framework  
+
+1. Set up basic python project that imports Fisher's Iris Data Set and import libraries needed
+2. Figure out how to parse specific data from the data set
+3. Select from data set information I want to document and compare  
+
+Second Consideration: Logic  
+
+1. Output a summary of each variable
+2. Write to a text file
+3. Get variable data for a histogram
+4. Save histogram as png
+5. Use variable data to create scatter plot of paired variables  
+
+Third Consideration: Presentation  
+
+1. In program documentation so anyone can run it and understand what it is doing. i.e any prompts or data shown is clearly defined
+2. In code documentation of what each block of text does along with what imports it is dependent on.
+3. Formatting of summary text files and images for the best experience of the end user.
+4. Ensure README file is thorough and includes sources referenced
+
 
 
 # 1. Introduction - History & Significance of the Iris Data Set
 
 Fisher's Iris data set is well known because it provides a manageably small but robust enough real world multivariagate data set [3]. This is ideal for use in a wide scope of problem solving scenarios including statistical analysis, statistical graphics, multivariate statistics and machine learning [4].  
 
-Ronald Aylmer Fisher, later knighted for his work in statistics [3], wrote a paper in 1936 titled "The Use of Multiple Measurements in Taxonomic Problems" in which the Iris data set first appears [5]. The data set is a balanced data set consisting of 150 samples. It is considered a balanced dataset because it breaks down into 50 samples from each of three species of Iris (*Iris setosa, Iris versicolor, and Iris virginica*) [5].  
+Ronald Aylmer Fisher, later knighted for his work in statistics [3], wrote a paper in 1936 titled "The Use of Multiple Measurements in Taxonomic Problems" in which the Iris data set first appears [5]. The data set is a balanced data set consisting of 150 samples. It is considered a balanced dataset because it breaks down into 50 samples from each of three species of Iris (*Iris setosa, Iris versicolor, and Iris virginica*) [5].  Fisher's Iris data set is a multivariate data set containing four variable: sepal length and width, and petal length and width as well as the class (the three species of Iris). 
 
 The data was used by Fisher with permission by Dr Edgar Anderson, who picked and measured two of the three species on the Gaspé Peninsula in Canada. The data Dr Anderson collected for each sample included sepal length in cm, sepal width in cm, petal length in cm, and petal width in cm [5]. In the article [5], Fisher developed and evaluated a linear function to differentiate between Iris species based on these four measurements [3]. 
 
@@ -52,7 +80,7 @@ Before beginning the analysis, the data set had to be downloaded. It is availabl
 
 I completed the project using Python 3.8.5 via Conda 4.9.2.  
 Tasks were run through the code editor VS Code Version 1.55.0.  
-All the code and documentation is stored publically on my GitHub repository.
+All the code and documentation is stored publically on my GitHub repository.  
 Various libraries were imported for this project:
 
 1. pandas
@@ -107,8 +135,21 @@ I chose this method because it is straightforward and the pandas module is a fou
 ## Referenences for Part 2.2  
 
 [1] w3schools.com "Pandas Tutorial" Available: https://www.w3schools.com/python/pandas/pandas_csv.asp [Accessed 19 April 2021]  
-[2] Scikit-Learn.org "Loading Iris Data Set" Available: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html [Accessed 19 April 2021]  
-[3] Python Docs. "Shutil- High Level File Operations"Available: https://docs.python.org/3/library/shutil.html [Accessed 19 April 2021]  
+[2] Scikit-Learn.org "Loading Iris Data Set" Available: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html [Accessed 19 April 2021].    
+[3] Python Docs. "Shutil- High Level File Operations"Available: https://docs.python.org/3/library/shutil.html [Accessed 19 April 2021].    
 [4]  AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021].  
 
 
+# 2.3 Analysing: Parsing the dataset
+
+One of the primary objectives of the project is to analyse the data using python and to generate a summary of the data in `.txt` file format. I used the `with open()` method of populating my data to a .txt file [1]. This method was chosen because it will automatically close the file once I leave the block [2].  
+
+The code used is: 
+`with open("iris_summary.txt", "w") as f:`  
+The write ("w) option was chosen as I want the program to create the file if it does not already exist and write over it each time the program is ran [3]. This is important because if changes are made to the dataset, the information in the `.txt` file will be automatically updated when the program is ran with the new data.
+
+### References for Part 2.3  
+
+[1] RealPython.com "Python With Open As Pattern" Available: https://realpython.com/working-with-files-in-python/#pythons-with-open-as-pattern  [Accessed 19 April 2021].      
+[2] Mertz, J. RealPython.com "Reading and Writing Files in Python (Guide)" Available: https://realpython.com/read-write-files-python/  [Accessed 19 April 2021].  
+[3] w3schools.com. "Python File Write" Available: https://www.w3schools.com/python/python_file_write.asp [Accessed 19 April 2021].  
