@@ -142,18 +142,71 @@ I chose this method because it is straightforward and the pandas module is a fou
 
 # 2.3 Analysing: Parsing the dataset  
 
+## 2.3.1 Reading in the Data  
+
 The csv dataset read in from the `.data` file is named as a variable, irisData, and then I created a dataframe, df, for it [4] The dataframe allows for two dimensional labeled data structures with columns of potentially different types [5].:  
     irisData = pd.read_csv('iris.data', names =["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"])  # reading in the data file 
     df = pd.DataFrame(irisData)  
 
+## 2.3.2 Writing to a .txt File  
 
 One of the primary objectives of the project is to analyse the data using python and to generate a summary of the data in `.txt` file format. I used the `with open()` method of populating my data to a .txt file [1]. This method was chosen because it will automatically close the file once I leave the block [2].   
 
 The code used is: 
 `with open("iris_summary.txt", "w") as f:`  
-The write ("w) option was chosen as I want the program to create the file if it does not already exist and write over it each time the program is ran [3]. This is important because if changes are made to the dataset, the information in the `.txt` file will be automatically updated when the program is ran with the new data.  
+The write ("w) option was chosen as I want the program to create the file if it does not already exist and write over it each time the program is ran [3]. This is important because if changes are made to the dataset, the information in the `.txt` file will be automatically updated when the program runs with the new data.  
 
+## 2.3.3 Parsing the Dataset as a whole
+
+The various elements of analysis were wrapped in `f.write()` to have the resulting analysis automatically written to the .txt file.  
+
+`f.write("This file contains basic data regarding the file type and contents of Fisher's Iris Data Set.\n\n\n")`  
+
+Then the basic analysis comprised of running several in-built pandas functions including:
+- ``type()`` returning the type of the specified object [6]  
+  returns: `<class 'pandas.core.frame.DataFrame'>`
+-  ``.info`` [7] provides a concise summary of the dataframe.  
+ returns: 
+ ``` 
+    <bound method DataFrame.info of      sepal length in cm  sepal width in cm  petal length in cm  petal width in cm         Species
+0                   5.1                3.5                 1.4                0.2     Iris-setosa
+1                   4.9                3.0                 1.4                0.2     Iris-setosa
+2                   4.7                3.2                 1.3                0.2     Iris-setosa
+3                   4.6                3.1                 1.5                0.2     Iris-setosa
+4                   5.0                3.6                 1.4                0.2     Iris-setosa
+..                  ...                ...                 ...                ...             ...
+145                 6.7                3.0                 5.2                2.3  Iris-virginica
+146                 6.3                2.5                 5.0                1.9  Iris-virginica
+147                 6.5                3.0                 5.2                2.0  Iris-virginica
+148                 6.2                3.4                 5.4                2.3  Iris-virginica
+149                 5.9                3.0                 5.1                1.8  Iris-virginica
+
+[150 rows x 5 columns]>
+```
+-  `.shape`  [8] provides a tuple of the dimensions of the dataframe.  
+  returns:  ``(150, 5)``
+
+- `.columns`
+-  `.describe`
+-  `.value_counts()`.  
+
+        # Basic investigation into the dataset:
+        f.write("Object Type for iris Data:\n\n" + str(type(irisData)) + "\n\n\n")
+        f.write("This shows the basic info of the data set.\nIt includes a sampling of the head and tail of the data, the index and the number of rows and columns.\n\n" + str(irisData.info) + "\n\n\n")
+        irisShape = irisData.shape # this gives me the shape of the matrix or data table - 150 rows, five columns
+        f.write("Data Table Shape; The number of rows and number of columns:\n\n " + str(irisShape) + "\n\n\n")
+        f.write("The Index of the columns are provided below along with the datatype:\n\n" + str(irisData.columns) + "\n\n\n") # this prints the Index showing titles of the columns)
+        descriptives = irisData.describe()
+        f.write("Table Summary of the Statistics of the Data Set Variables:\n\n" + descriptives.to_string() + "\n\n\n")
+        f.write("The Iris data set is a balaced data set.\nBreakdown of the data by species:\n\n" + str(irisData["Species"].value_counts()) 
+        + "\n\n\n")    
+
+Issues: for .info getting:         # look at the <bound dataframe.info issue later -- https://stackoverflow.com/questions/46239946/attempt-to-access-dataframe-column-displays-bound-method-ndframe-xxx
+        # https://www.reddit.com/r/learnprogramming/comments/3yx9er/python_what_does_it_mean_to_call_something/
+        Also key: https://pandas.pydata.org/pandas-docs/version/0.25.3/reference/api/pandas.DataFrame.info.html
 In Progress: Issues with reading in -- tried .df and didnt work -- tried without and got errors but solved with using str to convert tuples into writeable format. Add step by step instructions here. shape - w3schools.com "Numpy Array Shape" Available: https://www.w3schools.com/python/numpy/numpy_array_shape.asp [Accessed 19 April 2021]. Pandas Dataframe.info would not print to the doc pandas.pydata.org "Pandas DataFrame.Info" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html [Accessed 19 April 2021].  learndatasci.org Pandas Python Tutorial Available: https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/  [Accessed 19 April 2021]. 
+
+
 
 
 ### References for Part 2.3  
@@ -162,4 +215,7 @@ In Progress: Issues with reading in -- tried .df and didnt work -- tried without
 [2] Mertz, J. RealPython.com "Reading and Writing Files in Python (Guide)" Available: https://realpython.com/read-write-files-python/  [Accessed 19 April 2021].  
 [3] w3schools.com. "Python File Write" Available: https://www.w3schools.com/python/python_file_write.asp [Accessed 19 April 2021].  
 [4] w3resource.com "Pandas DataFrame: to_string() function" Available: https://www.w3resource.com/pandas/dataframe/dataframe-to_string.php [Accessed 19 April 2021].  
-[5] Datacamp. Pandas Tutorial: DataFrames in Python Available: https://www.datacamp.com/community/tutorials/pandas-tutorial-dataframe-python [Accessed 19 April 2021].  
+[5] Datacamp. "Pandas Tutorial: DataFrames in Python" Available: https://www.datacamp.com/community/tutorials/pandas-tutorial-dataframe-python [Accessed 19 April 2021].  
+[6] w3schools.com "Python Type() Function" Available: https://www.w3schools.com/python/ref_func_type.asp [Accessed 20 April 2021].
+[7] w3resources.com "Pandas DataFrame .info Function" Available: https://www.w3resource.com/pandas/dataframe/dataframe-info.php [Accseed 20 April 2021].
+[8] w3resource.com "Pandas Dataframe Property:Shape" Available: https://www.w3resource.com/pandas/dataframe/dataframe-shape.php [Accseed 20 April 2021].

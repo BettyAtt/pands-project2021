@@ -38,8 +38,8 @@ with open("iris_summary.txt", "w") as f:
     f.write("The Iris data set is a balaced data set.\nBreakdown of the data by species:\n\n" + str(irisData["Species"].value_counts()) 
     + "\n\n\n")
 
-    # More specific analysis
-    # Min, Max & Median values of each attribute by class
+    f.write("Digging Deeper into the Data - Examining by Species\n\n\n\n")
+    # Max, Min & Median values of each attribute by class
     f.write("Maximum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').max()) +"\n\n")
     f.write("Minimum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').min()) +"\n\n")
     f.write("Median values for each attribute by Species: \n\n" + str(irisData.groupby('Species').median()) +"\n\n")
