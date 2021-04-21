@@ -24,43 +24,30 @@ irisData = pd.read_csv(csv, names=names)
 # code for creating and writing a txt file of the summary information about this data set
 
 with open("iris_summary.txt", "w") as f:
+    f.write("This file contains basic data regarding the file type and contents of Fisher's Iris Data Set.\n\n\n")
     # Basic investigation into the dataset:
-
-
-    #f.write(df.columns = ['SepalLength_cm','SepalWidth_cm','PetalLength_cm','PetalWidth_cm','Species']) # adding column names to files
+    f.write("Object Type for iris Data:\n\n" + str(type(irisData)) + "\n\n\n")
+    f.write("This shows the basic info of the data set.\nIt includes a sampling of the head and tail of the data, the index and the number of rows and columns.\n\n" + str(irisData.info) + "\n\n\n")
+    # look at the <bound dataframe.info issue later -- https://stackoverflow.com/questions/46239946/attempt-to-access-dataframe-column-displays-bound-method-ndframe-xxx
+    # https://www.reddit.com/r/learnprogramming/comments/3yx9er/python_what_does_it_mean_to_call_something/
     irisShape = irisData.shape # this gives me the shape of the matrix or data table - 150 rows, five columns
-    f.write("The shape of the data table is provided in the format (number of rows, number of columns): \n\n " + str(irisShape) + "\n\n")
-    f.write("The Index of the columns are provided below along with the datatype: \n\n" + str(irisData.columns) + "\n\n") # this prints the Index with the titles of the columns:
-# Index(['SepalLength_cm', 'SepalWidth_cm', 'PetalLength_cm', 'PetalWidth_cm', 'Class'], dtype='object')
+    f.write("Data Table Shape; The number of rows and number of columns:\n\n " + str(irisShape) + "\n\n\n")
+    f.write("The Index of the columns are provided below along with the datatype:\n\n" + str(irisData.columns) + "\n\n\n") # this prints the Index showing titles of the columns)
     descriptives = irisData.describe()
-    f.write("Summary Statistics of each variables in a table: \n\n" + descriptives.to_string() + "\n\n") 
-    f.write("Breakdown of the data by species: \n\n" + str(irisData["Species"].value_counts()) + "\n\n")
-    #f.write(df.describe()) # is the describe function meaningful on whole set or by loc only? # this gives the basic information about the dataframe inclding the range index, 
-# number of data columns, column numbers and how many non-null objects, as well as the dtype for each column content.
-# finally it give the memory usage and null values.
-    #irisInfo = df.info()
-    f.write("Pivot Table Showing Each Species Mean Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean)) + "\n\n")
-    f.write("Pivot Table Showing Each Species Median Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.median)) + "\n\n")
-    #f.write("Description of table data for species Iris setosa" + str(irisData.loc[irisData["Species"] == "Iris-setosa"])  + "\n\n")
-    
-    
-    maxsepallength = irisData["sepal length in cm"].max()
-    #maxsepalwidth = irisData['sepal_width'].max()
-    #maxpetallength = irisData['petal_length'].max()
-    #maxpetalwidth = irisData['petal_width'].max()
-    #minsepallength = irisData['sepal_length'].min()
-    #minsepalwidth = irisData['sepal_width'].min()
-    #minpetallength = irisData['petal_length'].min()
-    #minpetalwidth = irisData['petal_width'].min()
-    f.write("The maximum sepal length in cm for this data set is: " + str(maxsepallength) + "\n\n")
+    f.write("Table Summary of the Statistics of the Data Set Variables:\n\n" + descriptives.to_string() + "\n\n\n")
+    f.write("The Iris data set is a balaced data set.\nBreakdown of the data by species:\n\n" + str(irisData["Species"].value_counts()) 
+    + "\n\n\n")
 
     # More specific analysis
     # Min, Max & Median values of each attribute by class
-    f.write("Maximum values for each attribute by Class: \n\n" + str(irisData.groupby('Species').max()) +"\n\n")
-    f.write("Minimum values for each attribute by Class: \n\n" + str(irisData.groupby('Species').min()) +"\n\n")
-    f.write("Median values for each attribute by Class: \n\n" + str(irisData.groupby('Species').median()) +"\n\n")
-   
-    modevalues = irisData.mode(axis=0,numeric_only=True,dropna=True)
-    f.write("Mode of each attribute: \n\n" + str(modevalues) + "\n\n")  # how can I do this by species? maybe use series instead of group by
-    # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mode.html
+    f.write("Maximum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').max()) +"\n\n")
+    f.write("Minimum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').min()) +"\n\n")
+    f.write("Median values for each attribute by Species: \n\n" + str(irisData.groupby('Species').median()) +"\n\n")
+    f.write("Pivot Table Showing Each Species Mean Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean)) + "\n\n")
+    f.write("Pivot Table Showing Each Species Median Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.median)) + "\n\n")
+    f.write("Pivot Table Showing Each Species Max Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.max)) + "\n\n")
+    f.write("Pivot Table Showing Each Species Min Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.min)) + "\n\n")
+    # https://www.w3resource.com/python-exercises/pandas/excel/pandas-pivot-exercise-13.php  max and min for pivot tables
     
+
+   

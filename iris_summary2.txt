@@ -1,13 +1,9 @@
-This file contains basic data regarding the file type and contents of Fisher's Iris Data Set.
-
-
-Object Type for iris Data:
+ Object Type for iris Data:
 
 <class 'pandas.core.frame.DataFrame'>
 
 
-This shows the basic info of the data set.
-It includes a sampling of the head and tail of the data, the index and the number of rows and columns.
+This shows the basic info of the data set:
 
 <bound method DataFrame.info of      sepal length in cm  sepal width in cm  petal length in cm  petal width in cm         Species
 0                   5.1                3.5                 1.4                0.2     Iris-setosa
@@ -53,8 +49,8 @@ max              7.900000           4.400000            6.900000           2.500
 The Iris data set is a balaced data set.
 Breakdown of the data by species:
 
-Iris-virginica     50
 Iris-setosa        50
+Iris-virginica     50
 Iris-versicolor    50
 Name: Species, dtype: int64
 
