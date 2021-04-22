@@ -145,8 +145,8 @@ I chose this method because it is straightforward and the pandas module is a fou
 ## 2.3.1 Reading in the Data  
 
 The csv dataset read in from the `.data` file is named as a variable, irisData, and then I created a dataframe, df, for it [4] The dataframe allows for two dimensional labeled data structures with columns of potentially different types [5].:  
-    irisData = pd.read_csv('iris.data', names =["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"])  # reading in the data file 
-    df = pd.DataFrame(irisData)  
+``irisData = pd.read_csv('iris.data', names =["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"])`` 
+  
 
 ## 2.3.2 Writing to a .txt File  
 
@@ -183,12 +183,28 @@ Then the basic analysis comprised of running several in-built pandas functions i
 
 [150 rows x 5 columns]>
 ```
--  `.shape`  [8] provides a tuple of the dimensions of the dataframe.  
+-  `.shape`   provides a tuple of the dimensions of the dataframe.[8]  
   returns:  ``(150, 5)``
 
-- `.columns`
--  `.describe`
--  `.value_counts()`.  
+- `.columns` returns the index of the columns along with the data type.
+  returns: ``Index(['sepal length in cm', 'sepal width in cm', 'petal length in cm', 'petal width in cm', 'Species'],dtype='object')``  
+
+-  `.describe`provides a summary of statistics about the data frame columns including mean, sample standard deviation, and interquartile range [9].  
+ returns:`sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+count          150.000000         150.000000          150.000000         150.000000
+mean             5.843333           3.054000            3.758667           1.198667
+std              0.828066           0.433594            1.764420           0.763161
+min              4.300000           2.000000            1.000000           0.100000
+25%              5.100000           2.800000            1.600000           0.300000
+50%              5.800000           3.000000            4.350000           1.300000
+75%              6.400000           3.300000            5.100000           1.800000
+max              7.900000           4.400000            6.900000           2.500000 `
+-  `.value_counts()`.  returns a series the counts of unique rows in the dataframe [10].  
+ returns:  
+ `Iris-setosa        50
+Iris-virginica     50
+Iris-versicolor    50
+Name: Species, dtype: int64`
 
         # Basic investigation into the dataset:
         f.write("Object Type for iris Data:\n\n" + str(type(irisData)) + "\n\n\n")
@@ -206,6 +222,79 @@ Issues: for .info getting:         # look at the <bound dataframe.info issue lat
         Also key: https://pandas.pydata.org/pandas-docs/version/0.25.3/reference/api/pandas.DataFrame.info.html
 In Progress: Issues with reading in -- tried .df and didnt work -- tried without and got errors but solved with using str to convert tuples into writeable format. Add step by step instructions here. shape - w3schools.com "Numpy Array Shape" Available: https://www.w3schools.com/python/numpy/numpy_array_shape.asp [Accessed 19 April 2021]. Pandas Dataframe.info would not print to the doc pandas.pydata.org "Pandas DataFrame.Info" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html [Accessed 19 April 2021].  learndatasci.org Pandas Python Tutorial Available: https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/  [Accessed 19 April 2021]. 
 
+## 2.3.3 Drilling into the Data - Parsing by Species of Iris
+More meaningful data could be obtained by using either the groupby() functions of pandas or converting the dataframe into a pivot table to isolate the three species types and look at the statistical information for each of them.  
+Code Block:  
+`f.write("Digging Deeper into the Data - Examining by Species\n\n\n\n")
+    # Max, Min & Median values of each attribute by class
+    f.write("Maximum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').max()) +"\n\n")
+    f.write("Minimum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').min()) +"\n\n")
+    f.write("Median values for each attribute by Species: \n\n" + str(irisData.groupby('Species').median()) +"\n\n")
+    f.write("Pivot Table Showing Each Species Mean Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean)) + "\n\n")
+    f.write("Pivot Table Showing Each Species Median Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.median)) + "\n\n")
+    f.write("Pivot Table Showing Each Species Max Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.max)) + "\n\n")
+    f.write("Pivot Table Showing Each Species Min Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.min)) + "\n\n")`
+
+    Breakdown of the code:  
+    The groupby() Method:
+    `'str(irisData.groupby('Species').max())` and `.min()``, `.median()` The groupby() function with dataframes allows grouping by an obect, in this case the variable 'Species' and the ``.agg`` function is used to return a single aggregated value for each group (such as max, min, median) [11]. 
+    returns: 
+    `                 sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+Species                                                                                      
+Iris-setosa                     5.8                4.4                 1.9                0.6
+Iris-versicolor                 7.0                3.4                 5.1                1.8
+Iris-virginica                  7.9                3.8                 6.9                2.5
+
+Minimum values for each attribute by Species: 
+
+                 sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+Species                                                                                      
+Iris-setosa                     4.3                2.3                 1.0                0.1
+Iris-versicolor                 4.9                2.0                 3.0                1.0
+Iris-virginica                  4.9                2.2                 4.5                1.4
+
+Median values for each attribute by Species: 
+
+                 sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+Species                                                                                      
+Iris-setosa                     5.0                3.4                1.50                0.2
+Iris-versicolor                 5.9                2.8                4.35                1.3
+Iris-virginica                  6.5                3.0                5.55                2.0`
+
+The pivot table method:  
+The pandas .pivot_table method allows for data digging by creating multiindex objects and allowing selective summaries of the table [11]. Here I chose 'Series' as the index and investigated this for the values of sepal lenth, sepal width, petal length, and petal width.  
+`(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean))`
+results: `
+                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+Species                                                                                      
+Iris-setosa                   1.464              0.244               5.006              3.418
+Iris-versicolor               4.260              1.326               5.936              2.770
+Iris-virginica                5.552              2.026               6.588              2.974
+
+Pivot Table Showing Each Species Median Measurements: 
+
+                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+Species                                                                                      
+Iris-setosa                    1.50                0.2                 5.0                3.4
+Iris-versicolor                4.35                1.3                 5.9                2.8
+Iris-virginica                 5.55                2.0                 6.5                3.0
+
+Pivot Table Showing Each Species Max Measurements: 
+
+                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+Species                                                                                      
+Iris-setosa                     1.9                0.6                 5.8                4.4
+Iris-versicolor                 5.1                1.8                 7.0                3.4
+Iris-virginica                  6.9                2.5                 7.9                3.8
+
+Pivot Table Showing Each Species Min Measurements: 
+
+                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+Species                                                                                      
+Iris-setosa                     1.0                0.1                 4.3                2.3
+Iris-versicolor                 3.0                1.0                 4.9                2.0
+Iris-virginica                  4.5                1.4                 4.9                2.2
+`
 
 
 
@@ -217,5 +306,40 @@ In Progress: Issues with reading in -- tried .df and didnt work -- tried without
 [4] w3resource.com "Pandas DataFrame: to_string() function" Available: https://www.w3resource.com/pandas/dataframe/dataframe-to_string.php [Accessed 19 April 2021].  
 [5] Datacamp. "Pandas Tutorial: DataFrames in Python" Available: https://www.datacamp.com/community/tutorials/pandas-tutorial-dataframe-python [Accessed 19 April 2021].  
 [6] w3schools.com "Python Type() Function" Available: https://www.w3schools.com/python/ref_func_type.asp [Accessed 20 April 2021].
-[7] w3resources.com "Pandas DataFrame .info Function" Available: https://www.w3resource.com/pandas/dataframe/dataframe-info.php [Accseed 20 April 2021].
-[8] w3resource.com "Pandas Dataframe Property:Shape" Available: https://www.w3resource.com/pandas/dataframe/dataframe-shape.php [Accseed 20 April 2021].
+[7] w3resources.com "Pandas DataFrame .info Function" Available: https://www.w3resource.com/pandas/dataframe/dataframe-info.php [Accessed 20 April 2021].
+[8] w3resource.com "Pandas Dataframe Property:Shape" Available: https://www.w3resource.com/pandas/dataframe/dataframe-shape.php [Accessed 20 April 2021].
+[9] tutorialspoint.com "Python Pandas Descriptive Statistics" Available: tutorialspoint.com/python_pandas/python_pandas_descriptive_statistics.htm [Accessed 20 April 2021].
+[10] pandas.pydata.org "Pandas .DataFrame.value_counts" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.value_counts.html [Accessed 20 April 2021].
+[11] pydata.org "Pandas pivot_table" Available: https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html [Accessed 21 April 2021].
+
+# Section 3 Visualising the Data
+I chose to use the Python library Seaborn which builds upon Matplotlib to create high quality statistical graphics [1]. 
+Seaborn.pydata.org has extensive information on how to create plots to show relational, distributional, categorical, and regression with customisation of plot types, layout and colour and grid options.
+
+# 3.1.1 Histograms of the Variables
+
+The first step is to create histograms of the variables (sepal length, sepal width, petal length, petal width).
+``sns.displot`` the first step is to call seaborn and specify plot chosen as histogram ``.displot()``. 
+Then we define the parameters of the histplot ``(irisData, x = "sepal length in cm", hue="Species", kde=True, binwidth=0.2)`` Firstly it specifies the data it is to use is my dataset irisData, the x axis indicates we are looking at the sepal length in cm, the y is by default set to count, the hue specifies which columns in the data seaborn uses to set its color encoding, I have set it to colour code by Species [1]. The kde option stands for kernel density estimate. "Rather than using discrete bins, a KDE plot smooths the observations with a Gaussian kernel, producing a continuous density estimate" [2] By plotting this you can visualize the distribution of observartions in a dataset analagous to a histogram [3]. The bin is when the entire range of values is divided into a series of intervals so that it can be counted how many values fall into each interval[4]. The bars on the histogram are called bins. By default the number of bins assigned based on the amount of variables but can be adjusted. The height of each bin shows how many values from the data fall into that range [5]. The width of each bin is equal to the (max value of data – min value of data) / total number of bins. Since there are multiple variables we are looking at, ``multiple="dodge"`` is used to display them more clearly in the histographs that contain data regarding all three species of Iris [6]. Other options were using a "layer" or "step" approach but in this case the dodge made it easiest to see the counts of measurements the distinctive Iris types.
+
+``plt.grid()`` A grid is used to make understanding the data easier. 
+
+``plt.savefig('Histogram_All_SepalLength.png')`` Matplotlib Pyplot has an option to save plots into a image file such as a png. [7] This saves to the current working directory.
+``plt.clf()`` This clears the current figure from the code so that it does not add all the plots to one file [8]
+
+This process is repeated for sepal width, petal length, petal width in lines ENTER LINES HERE of the code.
+
+-- Graphs of the general data -- min, max, deviation, etc?
+
+--Scatterplots view seaborn tutorial.
+
+### References 3.1.1  
+
+[1] seaborn.pydata.org "Seaborn Introduction" Available: https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics. [Accessed 22 April 2021].  
+[2] seaborn.pydata.org "Seaborn Tutorial: KDE plots" Available: https://seaborn.pydata.org/tutorial/distributions.html#tutorial-kde [Accessed 22 April 2021].  
+[3] seaborn.pydata.org "KDE Plots" Available: https://seaborn.pydata.org/generated/seaborn.kdeplot.html [Accessed 22 April 2021].  
+[4]. Datacamp. "Histograms in Matplotlib" Available: https://www.datacamp.com/community/tutorials/histograms-matplotlib [Accessed 22 April 2021].  
+[5] geeksforgeeks.org "Bin Size in MatPlotLib Histogram" Available: https://www.geeksforgeeks.org/bin-size-in-matplotlib-histogram/#:~:text=Width%20of%20each%20bin%20is,pyplot. [Accseed 22 April 2021].
+[6] seaborn.pydata.org "Seaborn Distrubution Tutorial" Available: https://seaborn.pydata.org/tutorial/distributions.html [Accessed 22 April 2021].
+[7] Matplotlib.org "Pyplot Savefig" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html [Accessed 22 April 2021]
+[8] Matplotlib.org "Pyplot.clf" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.clf.html [Accessed 22 April 2021].

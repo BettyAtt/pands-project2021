@@ -8,8 +8,8 @@
 # Uploading the libraries needed for this project:
 import pandas as pd
 import numpy as np
-import matplotlib as plt
-import seaborn as sbn
+import matplotlib.pyplot as plt
+import seaborn as sns
 import sklearn as sk 
 
 #  Uploading UCI's Iris dataset and adding column names to it 
@@ -49,5 +49,60 @@ with open("iris_summary.txt", "w") as f:
     f.write("Pivot Table Showing Each Species Min Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.min)) + "\n\n")
     # https://www.w3resource.com/python-exercises/pandas/excel/pandas-pivot-exercise-13.php  max and min for pivot tables
     
+# Plots
 
-   
+# Histograms of the variables
+
+#sepal length
+
+sns.displot(irisData, x = "sepal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+plt.grid()
+# Saves the plot as a png image
+plt.savefig('Histogram_All_SepalLength.png')
+plt.clf() # Clears the plot so a new plot can be created. Without this, the subsequent plots are combined into the previous plot
+
+sns.displot(data=irisData, x="sepal length in cm", hue="Species", col="Species", kde=True)  
+plt.grid()
+plt.savefig('Histogram_Individual_SepalLength.png')
+plt.clf() 
+
+# sepal width
+sns.displot(irisData, x = "sepal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+plt.grid()
+# Saves the plot as a png image
+plt.savefig('Histogram_All_SepalWidth.png')
+plt.clf() # Clears the plot so further plots can be created.
+
+sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True)  
+plt.grid()
+plt.savefig('Histogram_Individual_SepalWidth.png')
+plt.clf() 
+
+# petal length
+sns.displot(irisData, x = "petal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+plt.grid()
+# Saves the plot as a png image
+plt.savefig('Histogram_All_PetalLength.png')
+plt.clf() # Clears the plot so further plots can be created.
+
+sns.displot(data=irisData, x="petal length in cm", hue="Species", col="Species", kde=True)  
+plt.grid()
+plt.savefig('Histogram_Individual_PetalLength.png')
+plt.clf() 
+
+# petal width
+sns.displot(irisData, x = "petal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+plt.grid()
+# Saves the plot as a png image
+plt.savefig('Histogram_All_PetalWidth.png')
+plt.clf() # Clears the plot so further plots can be created. 
+
+sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", kde=True)  
+plt.grid()
+plt.savefig('Histogram_Individual_PetalWidth.png')
+plt.clf() 
+
