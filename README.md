@@ -320,7 +320,19 @@ Seaborn.pydata.org has extensive information on how to create plots to show rela
 
 The first step is to create histograms of the variables (sepal length, sepal width, petal length, petal width).
 ``sns.displot`` the first step is to call seaborn and specify plot chosen as histogram ``.displot()``. 
-Then we define the parameters of the histplot ``(irisData, x = "sepal length in cm", hue="Species", kde=True, binwidth=0.2)`` Firstly it specifies the data it is to use is my dataset irisData, the x axis indicates we are looking at the sepal length in cm, the y is by default set to count, the hue specifies which columns in the data seaborn uses to set its color encoding, I have set it to colour code by Species [1]. The kde option stands for kernel density estimate. "Rather than using discrete bins, a KDE plot smooths the observations with a Gaussian kernel, producing a continuous density estimate" [2] By plotting this you can visualize the distribution of observartions in a dataset analagous to a histogram [3]. The bin is when the entire range of values is divided into a series of intervals so that it can be counted how many values fall into each interval[4]. The bars on the histogram are called bins. By default the number of bins assigned based on the amount of variables but can be adjusted. The height of each bin shows how many values from the data fall into that range [5]. The width of each bin is equal to the (max value of data – min value of data) / total number of bins. Since there are multiple variables we are looking at, ``multiple="dodge"`` is used to display them more clearly in the histographs that contain data regarding all three species of Iris [6]. Other options were using a "layer" or "step" approach but in this case the dodge made it easiest to see the counts of measurements the distinctive Iris types.
+
+
+Then we define the parameters of the histplot ``(irisData, x = "sepal length in cm", hue="Species", kde=True, binwidth=0.2)``  
+
+Parameters explained:
+
+Firstly it specifies the data it is to use is my dataset irisData, the x axis indicates we are looking at the sepal length in cm, the y is by default set to count, the hue specifies which columns in the data seaborn uses to set its color encoding, I have set it to colour code by Species [1].  
+
+The kde option stands for kernel density estimate. "Rather than using discrete bins, a KDE plot smooths the observations with a Gaussian kernel, producing a continuous density estimate" [2] By plotting this you can visualize the distribution of observartions in a dataset analagous to a histogram [3].  
+
+The bin is when the entire range of values is divided into a series of intervals so that it can be counted how many values fall into each interval[4]. The bars on the histogram are called bins. By default the number of bins assigned based on the amount of variables but can be adjusted. The height of each bin shows how many values from the data fall into that range [5]. The width of each bin is equal to the (max value of data – min value of data) / total number of bins.  
+
+Since there are multiple variables we are looking at, ``multiple="dodge"`` is used to display them more clearly in the histographs that contain data regarding all three species of Iris [6]. Other options were using a "layer" or "step" approach but in this case the dodge made it easiest to see the counts of measurements the distinctive Iris types.
 
 ``plt.grid()`` A grid is used to make understanding the data easier. 
 
@@ -329,11 +341,15 @@ Then we define the parameters of the histplot ``(irisData, x = "sepal length in 
 
 This process is repeated for sepal width, petal length, petal width in lines ENTER LINES HERE of the code.
 
--- Graphs of the general data -- min, max, deviation, etc?
+## 3.1.2 Example
+ADD ONE IMAGE: (OR ADD A TABLE CONTAINING 9 IMAGES)
+![Histo_All_Petal_Length]("Histogram_All_PetalLength.png)
+![Histo_Individual_Petal_Length]("Histogram_Individual_PetalLength.png)
 
---Scatterplots view seaborn tutorial.
+## 3.1.3 Observations from these histograms: 
+ADD Here -- this is the analysis based on what the histogram images tell us
 
-### References 3.1.1  
+### References 3.1 
 
 [1] seaborn.pydata.org "Seaborn Introduction" Available: https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics. [Accessed 22 April 2021].  
 [2] seaborn.pydata.org "Seaborn Tutorial: KDE plots" Available: https://seaborn.pydata.org/tutorial/distributions.html#tutorial-kde [Accessed 22 April 2021].  
@@ -343,3 +359,58 @@ This process is repeated for sepal width, petal length, petal width in lines ENT
 [6] seaborn.pydata.org "Seaborn Distrubution Tutorial" Available: https://seaborn.pydata.org/tutorial/distributions.html [Accessed 22 April 2021].
 [7] Matplotlib.org "Pyplot Savefig" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html [Accessed 22 April 2021]
 [8] Matplotlib.org "Pyplot.clf" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.clf.html [Accessed 22 April 2021].
+
+# 3.2 Making Scatterplots:  
+
+Scatterplots can show the distribution of the four variable types color coded by the species type which is ideal for drawing conclusions about the dataset. This investigation looks at the six possible combinations of variable pairs:  
+
+1. sepal length and sepal width
+2. Sepal Length and Petal Length
+3. Sepal Length and Petal Width
+4. Sepal Width and Petal Length
+5. Sepal Width and Petal Width
+6. Petal Length and Petal Width
+
+## 3.2.1 Pairplot
+Seaborn has functionality called pairplot that allows for visualisation of multidimensional relationships in the data and generates plots of the multiple combinations of the paired data.
+For the Iris Dataset a pair plot will look at the above six combinations of variables.  
+It also looks at the mirrored versions of the above pairs.  
+Finally, pairplots have four plots in the diagonal row can contain "a univariate distribution plot is drawn to show the marginal distribution of the data in each column" or can be modified to show a subset of variables or plot different variables on the rows and columns [1]. It is also possible to show a subset of variables or plot different variables on the rows and columns.  
+
+Code:
+
+    sns.set_style("whitegrid")
+    sns.pairplot(irisData, hue = "Species", diag_kind = "hist", palette = "colorblind", height = 2)
+    plt.suptitle("Pairplot Comparing the Four Variables", y= 1.0001) #y = > 1 so the title appears slightly above the plot
+    plt.savefig("pairplot.png")
+    plt.show()```
+ Code walkthrough:
+ `sns.set_style("whitegrid")` adds a grid to the plots and selects the style of it.  
+ ``sns.pairplot`` calls seaborn's pairplot functionality.  
+ Pairplot has many parameter options [1] but the most import ones are setting where the data comes from `(irisData, hue = "Species",` and setting the hue which determines what variable sets the color coding, in this case the Species. This allows for patterns to be easily seen within the different Iris species across the range of variables.  
+ `diag_kind = "hist"` this set the diagonal row to show four histograms, one for each variable with the color coding to represent the Iris species.  
+ `palette = "colorblind", height = 2)`For further customisation I set the color palette to "colorblind" for optimal accessibility and the height to 2 for optimal viewing of all the plots.
+
+ The plots automatically show x and y axis labels and a legend but not a title. Using ``plt.title()`` caused the title to show up in the middle of the plots, so I had do some research and found a way to add a suptitle `plt.suptitle("Pairplot Compairing the Four Variables", y=1.0001)`. The y axis coordinated had to be added as greater than 1 or else the plot title shows up covering plot data [2].  
+
+ The plot was then saved as a png ``plt.savefig("pairplot.png")``.  
+ And set to show so it will open when the code is ran `plt.show()`.  
+
+ ## 3.2.2 Image of the Pairplot
+
+ ![Pairplot](pairplot.png)
+
+ ## 3.2.3 Observations about the Pairplot
+  A cursory view of the plots show that the most useful features for ideniting species are the petal length and petal width variables. The plots showing these variables have a clear clustering pattern by species type, with only minimal overlap of *Iris versicolor* and *Iris virginica*. 
+
+  *Iris setosa* is easily identifiable and therefore is considered linearly seperable [3].
+
+
+# Graphs of the general data -- min, max, deviation, etc?
+ADD HERE
+
+
+### References 3.2.1
+[1] seaborn.pydata.org "Seaborn Pairplot" Available: https://seaborn.pydata.org/generated/seaborn.pairplot.html#:~:text=Plot%20pairwise%20relationships%20in%20a%20dataset.&text=The%20diagonal%20plots%20are%20treated,on%20the%20rows%20and%20columns. [Accessed 23 April 2021].
+[2] Martin S. Stockoverflow.com "How to Show the Title for the Diagram in Seaborn Plotpair" https://stackoverflow.com/questions/36813396/how-to-show-the-title-for-the-diagram-of-seaborn-pairplot-or-pridgrid [Accessed 23 April 2021].
+[3] Applied AI Course. "Iris Dataset EDA LEecture 1" Available: https://www.youtube.com/watch?v=FLuqwQgSBDw&list=PLupD_xFct8mFDeCqoUAWZpUddeqmT28_L [Accessed 23 April 2021].

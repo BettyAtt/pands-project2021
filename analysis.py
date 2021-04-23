@@ -108,8 +108,9 @@ plt.show()
 # Making Scatterplots:
 # Seaborn has functionality called pairplot that allows for visualisation of multidimensional relationships in the data.
 sns.set_style("whitegrid")
-sns.pairplot(irisData, hue="Species", size=2.5)
-plt.title("Pairplot of Iris Dataset Varaibles") # this is showing up in the middle-- FIX!
+sns.pairplot(irisData, hue = "Species", diag_kind = "hist", palette = "colorblind", height = 2)
+plt.suptitle("Pairplot Comparing the Four Variables", y= 1.0001) #y = > 1 so the title appears slightly above the plot
+# https://stackoverflow.com/questions/36813396/how-to-show-the-title-for-the-diagram-of-seaborn-pairplot-or-pridgrid
 plt.savefig("pairplot.png")
 plt.show()
 # from https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html
