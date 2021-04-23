@@ -54,55 +54,111 @@ with open("iris_summary.txt", "w") as f:
 # Histograms of the variables
 
 #sepal length
-
+sns.set_style("darkgrid")
 sns.displot(irisData, x = "sepal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
 # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-plt.grid()
 # Saves the plot as a png image
 plt.savefig('Histogram_All_SepalLength.png')
-plt.clf() # Clears the plot so a new plot can be created. Without this, the subsequent plots are combined into the previous plot
+plt.show() # Clears the plot so a new plot can be created. Without this, the subsequent plots are combined into the previous plot
 
+sns.set_style("darkgrid")
 sns.displot(data=irisData, x="sepal length in cm", hue="Species", col="Species", kde=True)  
-plt.grid()
 plt.savefig('Histogram_Individual_SepalLength.png')
-plt.clf() 
+plt.show() 
 
 # sepal width
+sns.set_style("darkgrid")
 sns.displot(irisData, x = "sepal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
 # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-plt.grid()
 # Saves the plot as a png image
 plt.savefig('Histogram_All_SepalWidth.png')
-plt.clf() # Clears the plot so further plots can be created.
+plt.show() # Clears the plot so further plots can be created.
 
+sns.set_style("darkgrid")
 sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True)  
-plt.grid()
 plt.savefig('Histogram_Individual_SepalWidth.png')
-plt.clf() 
+plt.show() 
 
 # petal length
+sns.set_style("darkgrid")
 sns.displot(irisData, x = "petal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
 # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-plt.grid()
 # Saves the plot as a png image
 plt.savefig('Histogram_All_PetalLength.png')
-plt.clf() # Clears the plot so further plots can be created.
+plt.show() # Clears the plot so further plots can be created.
 
+sns.set_style("darkgrid")
 sns.displot(data=irisData, x="petal length in cm", hue="Species", col="Species", kde=True)  
-plt.grid()
 plt.savefig('Histogram_Individual_PetalLength.png')
-plt.clf() 
+plt.show() 
 
 # petal width
+sns.set_style("darkgrid")
 sns.displot(irisData, x = "petal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
 # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-plt.grid()
 # Saves the plot as a png image
 plt.savefig('Histogram_All_PetalWidth.png')
-plt.clf() # Clears the plot so further plots can be created. 
+plt.show() # Clears the plot so further plots can be created. 
 
+sns.set_style("darkgrid")
 sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", kde=True)  
-plt.grid()
 plt.savefig('Histogram_Individual_PetalWidth.png')
-plt.clf() 
+plt.show()
 
+# Making Scatterplots:
+# Seaborn has functionality called pairplot that allows for visualisation of multidimensional relationships in the data.
+sns.set_style("whitegrid")
+sns.pairplot(irisData, hue="Species", size=2.5)
+plt.title("Pairplot of Iris Dataset Varaibles") # this is showing up in the middle-- FIX!
+plt.savefig("pairplot.png")
+plt.show()
+# from https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html
+# changed size to height because threw error as new update in seaborn
+# https://stackoverflow.com/questions/51400076/change-seaborn-pair-plot-figure-size
+
+# Done individually it is easier to make observations
+# https://www.geeksforgeeks.org/plotting-graph-for-iris-dataset-using-seaborn-and-matplotlib/
+
+#sepal length sepal width scatterplot
+sns.set_style("whitegrid") # add background grid and set style
+sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","sepal width in cm").add_legend()
+# Facet grid shows conditional relationships. Hue specifies what variable sets the color coding of the plot. 
+#.map sets the type of plot and then columns for the x and y axis. Legend had to be added to explain what the colors represent.
+plt.title("Examining Sepal Length and Sepal Width Correlation")
+plt.savefig("scatter_sl_sw.png")
+plt.show()
+
+#sepal length petal width scatterplot
+sns.set_style("whitegrid")
+sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","petal length in cm").add_legend()
+plt.title("Examining Sepal Length and Petal Length Correlation")
+plt.savefig("scatter_sl_pl.png")
+plt.show()
+
+#sepal length petal width scatterplot
+sns.set_style("whitegrid")
+sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","petal width in cm").add_legend()
+plt.title("Examining Sepal Length and Petal Width Correlation")
+plt.savefig("scatter_sl_pw.png")
+plt.show()
+
+#sepal width petal length scatterplot
+sns.set_style("whitegrid")
+sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal width in cm","petal length in cm").add_legend()
+plt.title("Examining Sepal Width and Petal Length Correlation")
+plt.savefig("scatter_sw_pl.png")
+plt.show()
+
+#sepal width petal width scatterplot
+sns.set_style("whitegrid")
+sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal width in cm","petal width in cm").add_legend()
+plt.title("Examining Sepal Width and Petal Width Correlation")
+plt.savefig("scatter_sw_pw.png")
+plt.show()
+
+#petal length petal width
+sns.set_style("whitegrid")
+sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"petal length in cm","petal width in cm").add_legend()
+plt.title("Examining Petal Length and Petal Width Correlation")
+plt.savefig("scatter_pl_pw.png")
+plt.show()
