@@ -235,66 +235,74 @@ Code Block:
     f.write("Pivot Table Showing Each Species Max Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.max)) + "\n\n")
     f.write("Pivot Table Showing Each Species Min Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.min)) + "\n\n")`
 
-    Breakdown of the code:  
-    The groupby() Method:
-    `'str(irisData.groupby('Species').max())` and `.min()``, `.median()` The groupby() function with dataframes allows grouping by an obect, in this case the variable 'Species' and the ``.agg`` function is used to return a single aggregated value for each group (such as max, min, median) [11]. 
-    returns: 
-    `                 sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-Species                                                                                      
-Iris-setosa                     5.8                4.4                 1.9                0.6
-Iris-versicolor                 7.0                3.4                 5.1                1.8
-Iris-virginica                  7.9                3.8                 6.9                2.5
+Breakdown of the code:  
+The groupby() Method:
+`'str(irisData.groupby('Species').max())` and `.min()``, `.median()` The groupby() function with dataframes allows grouping by an obect, in this case the variable 'Species' and the ``.agg`` function is used to return a single aggregated value for each group (such as max, min, median) [11]. 
+returns: 
+                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+    Species                                                                                      
+    Iris-setosa                     5.8                4.4                 1.9                0.6
+    Iris-versicolor                 7.0                3.4                 5.1                1.8
+    Iris-virginica                  7.9                3.8                 6.9                2.5
 
-Minimum values for each attribute by Species: 
+    Minimum values for each attribute by Species: 
 
-                 sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-Species                                                                                      
-Iris-setosa                     4.3                2.3                 1.0                0.1
-Iris-versicolor                 4.9                2.0                 3.0                1.0
-Iris-virginica                  4.9                2.2                 4.5                1.4
+                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+    Species                                                                                      
+    Iris-setosa                     4.3                2.3                 1.0                0.1
+    Iris-versicolor                 4.9                2.0                 3.0                1.0
+    Iris-virginica                  4.9                2.2                 4.5                1.4
 
-Median values for each attribute by Species: 
+    Median values for each attribute by Species: 
 
-                 sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-Species                                                                                      
-Iris-setosa                     5.0                3.4                1.50                0.2
-Iris-versicolor                 5.9                2.8                4.35                1.3
-Iris-virginica                  6.5                3.0                5.55                2.0`
+                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+    Species                                                                                      
+    Iris-setosa                     5.0                3.4                1.50                0.2
+    Iris-versicolor                 5.9                2.8                4.35                1.3
+    Iris-virginica                  6.5                3.0                5.55                2.0`
 
 The pivot table method:  
+
 The pandas .pivot_table method allows for data digging by creating multiindex objects and allowing selective summaries of the table [11]. Here I chose 'Series' as the index and investigated this for the values of sepal lenth, sepal width, petal length, and petal width.  
+
 `(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean))`
-results: `
-                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
-Species                                                                                      
-Iris-setosa                   1.464              0.244               5.006              3.418
-Iris-versicolor               4.260              1.326               5.936              2.770
-Iris-virginica                5.552              2.026               6.588              2.974
+results: 
+Pivot Table Showing Each Species Mean Measurements: 
+                        petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+        Species                                                                                      
+        Iris-setosa                   1.464              0.244               5.006              3.418
+        Iris-versicolor               4.260              1.326               5.936              2.770
+        Iris-virginica                5.552              2.026               6.588              2.974  
+
+
 
 Pivot Table Showing Each Species Median Measurements: 
 
-                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
-Species                                                                                      
-Iris-setosa                    1.50                0.2                 5.0                3.4
-Iris-versicolor                4.35                1.3                 5.9                2.8
-Iris-virginica                 5.55                2.0                 6.5                3.0
+                    petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+    Species                                                                                      
+    Iris-setosa                    1.50                0.2                 5.0                3.4
+    Iris-versicolor                4.35                1.3                 5.9                2.8
+    Iris-virginica                 5.55                2.0                 6.5                3.0  
+
+
 
 Pivot Table Showing Each Species Max Measurements: 
 
-                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
-Species                                                                                      
-Iris-setosa                     1.9                0.6                 5.8                4.4
-Iris-versicolor                 5.1                1.8                 7.0                3.4
-Iris-virginica                  6.9                2.5                 7.9                3.8
+                    petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+    Species                                                                                      
+    Iris-setosa                     1.9                0.6                 5.8                4.4
+    Iris-versicolor                 5.1                1.8                 7.0                3.4
+    Iris-virginica                  6.9                2.5                 7.9                3.8  
+
 
 Pivot Table Showing Each Species Min Measurements: 
 
-                 petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
-Species                                                                                      
-Iris-setosa                     1.0                0.1                 4.3                2.3
-Iris-versicolor                 3.0                1.0                 4.9                2.0
-Iris-virginica                  4.5                1.4                 4.9                2.2
-`
+                    petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
+    Species                                                                                      
+    Iris-setosa                     1.0                0.1                 4.3                2.3
+    Iris-versicolor                 3.0                1.0                 4.9                2.0
+    Iris-virginica                  4.5                1.4                 4.9                2.2  
+
 
 
 
@@ -343,8 +351,8 @@ This process is repeated for sepal width, petal length, petal width in lines ENT
 
 ## 3.1.2 Example
 ADD ONE IMAGE: (OR ADD A TABLE CONTAINING 9 IMAGES)
-![Histo_All_Petal_Length]("Histogram_All_PetalLength.png)
-![Histo_Individual_Petal_Length]("Histogram_Individual_PetalLength.png)
+![Histo_All_Petal_Length]("Histogram_All_PetalLength.png")
+![Histo_Individual_Petal_Length]("Histogram_Individual_PetalLength.png")
 
 ## 3.1.3 Observations from these histograms: 
 ADD Here -- this is the analysis based on what the histogram images tell us
