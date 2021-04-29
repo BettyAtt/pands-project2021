@@ -4,20 +4,14 @@ ___
 # Author: Betty Attwood G00398300
 ![GMIT_LOGO](gmit_logo.png)
 ___
-## About the Project:
+## i. About the Project:
 This project analyses the well-known Fisher’s Iris data set [1] using Python [2]. This repository documents the researching of the data set, the documentation, and the code (in Python) used to investigate it.  
-This project forms part of the coursework required for the module Programming & Scripting, a core module of GMIT's Higher Diploma of Computer Science in Data Analytics.
+This project forms part of the coursework required for the module Programming & Scripting, a core module of GMIT's Higher Diploma of Computer Science in Data Analytics.  
 
-# README Table of Contents
-1. Introduction - brief introduction to the history of Iris data set and its significance in data analytics.
-2. Analysing the Data Set
-3. 
-4. 
-5. 
+## ii. Project Plan
 
-# Breakdown of Tasks
+Break down Tasks based on Project Objectives:  
 
-Break down Tasked based on Project Objectives:  
 • outputs a summary of each variable to a single text file,  
 • saves a histogram of each variable to png files, and  
 • outputs a scatter plot of each pair of variables.    
@@ -38,10 +32,31 @@ Second Consideration: Logic
 
 Third Consideration: Presentation  
 
-1. In program documentation so anyone can run it and understand what it is doing. i.e any prompts or data shown is clearly defined
-2. In code documentation of what each block of text does along with what imports it is dependent on.
+1. Include in program documentation so anyone can run it and understand what it is doing. i.e any prompts or data shown is clearly defined
+2. Include in code documentation of what each block of text does along with what imports it is dependent on.
 3. Formatting of summary text files and images for the best experience of the end user.
-4. Ensure README file is thorough and includes sources referenced
+4. Ensure README file is thorough and includes sources referenced in the completion of this project.
+
+#  README Table of Contents  
+i. About the Project  
+ii. Project Plan  
+
+1. Introduction   
+2. Setting the Environment, Libraries and Modules  
+  2.1 The Programming Environment  
+  2.2 Obtaining the Data Set  
+3. Analysing: Parsing the Data Set  
+  3.1 Reading in the Data  
+  3.2 Writing to a .txt File  
+  3.3 Parsing the Data Set as a Whole  
+  3.4 Drilling into the Data Set by Species type  
+4. Visualising the Data Set
+  4.1 Histograms  
+  4.2 Box and Swarm Plots  
+  4.3 Scatterplots  
+5. Conclusion
+
+
 
 
 
@@ -58,7 +73,7 @@ Image Credit *Plural Sight* [6]
 
 Fisher's Iris data set is an ideal starting point for learning data mining techniques. Data mining is digging through data to look for connections and predict trends. SAS notes data mining is a culmination of "three intertwined scientific disciplines: statistics (the numeric study of data relationships), artificial intelligence (human-like intelligence displayed by software and/or machines) and machine learning (algorithms that can learn from data to make predictions)" [7]. Machine Learning is a popular area of use as the data set is ideal for teaching beginners principles of machine learning as well as serving as an ideal test for new sorting and classifying methods. It is so commonly used that the machine learning library for Python Scikit-Learn (sk-learn) includes it as one of the loadable data sets. The data set is also freely available for download and use from UC Irvine's Machine Learning Repository [1]. UC Irvine's Machine Learning Repository enumerates the many published papers that reference this dataset showing the wide range of domains it is used in especially in the domains of computer science and statistics [1]. 
 
-### References for Part 1:  
+### References for Section 1:  
 
 [1] UC Irvine Machine Learning Repository. Iris data set.
 http://archive.ics.uci.edu/ml/datasets/Iris.  [Accessed 9 April 2021]  
@@ -69,15 +84,9 @@ http://archive.ics.uci.edu/ml/datasets/Iris.  [Accessed 9 April 2021]
 [6] Singhal, G. (2020) *Plural Sight* "Designing a Machine Learning Model" Available: https://www.pluralsight.com/guides/designing-a-machine-learning-model [Accessed 17 April 2021]
 [7] SAS. (2021). 'What is Data Mining?' Available: https://www.sas.com/en_ie/insights/analytics/data-mining.html [Accessed 17 April 2021]
 
-# 2 Analysing the Iris Data Set  
+# 2 Setting Up the Environment, & Libraries & Modules 
 
-## 2.1 Setting Up the Environment, & Libraries & Modules  
-
-### 2.1.1 Downloading the Dataset
-
-Before beginning the analysis, the data set had to be downloaded. It is available from UCI Machine Learning Repository or can be loaded in Pythopn using sk-learn. As the dataset is requested to be uploaded to the repository I downloaded the file from UCI Machine Learning Database as a .data file. These .data files hold data in either comma seperated value (.csv) format or in tab seperated value format and the data may be in text or binary format [1]. The iris.data file opened in VS Code in csv format and was in text.  
-
-### 2.1.2 The Programming Environment
+## 2.1 The Programming Environment
 
 I completed the project using Python 3.8.5 via Conda 4.9.2.  
 Tasks were run through the code editor VS Code Version 1.55.0.  
@@ -88,7 +97,6 @@ Various libraries were imported for this project:
 2. numpy
 3. matplotlib
 4. seaborn
-5. sklearn
 
 These libraries were imported using the follow code:  
 
@@ -96,7 +104,6 @@ These libraries were imported using the follow code:
     import numpy as np
     import matplotlib.pyplot as plt
     import seaborn as sns
-    import sklearn as sk
 
 The as combined with import allows the module to be renamed for ease of use in the coding [7].  
 
@@ -113,10 +120,6 @@ This library is useful for making some of the simpler plots to illustrate the da
 
 - **seaborn**: Seaborn library works with matplotlib and its strengths lay in visualising random distributions [5].  
 
-- **sklearn**: Scikit Learn (sklearn) is a machine learning library. It is a predicitive data analysis tool built on NumPy, SciPy, and Matplotlib [6]. It also has the iris data set as one of its built-in data set options.   
-
-
-
 
 ### References for Part 2.1:
 
@@ -128,11 +131,16 @@ This library is useful for making some of the simpler plots to illustrate the da
 [6] Scikit-learn.org "Scikit=Learn Tutorial" Available: https://scikit-learn.org/stable/tutorial/basic/tutorial.html [Accessed 18 April 2021].  
 [7] stackabuse.com "Relative vs Absolute Imports in Python" Available: https://stackabuse.com/relative-vs-absolute-imports-in-python/ [Accessed 27 April 2021]
 
-### 2.2 Importing the Data Set  
+## 2.2 Obtaining the Data Set  
+
+## 2.2.1 Downloading the Dataset
+
+Before beginning the analysis, the data set had to be downloaded. It is available from UCI Machine Learning Repository or can be loaded in Pythopn using sk-learn. As the dataset is requested to be uploaded to the repository I downloaded the file from UCI Machine Learning Database as a .data file. These .data files hold data in either comma seperated value (.csv) format or in tab seperated value format and the data may be in text or binary format [1]. The iris.data file opened in VS Code in csv format and was in text.  
 
 Once the libraries have been added and the data set downnloaded from UCI's Machine Learning Repository,
 the next step is to save the UCI `.data` file into my repository folder and to read it into my ``analysis.py`` file.  
 
+## 2.2.2 Importing the Data Set
 There are several methods for opening the Iris data set in a Python program that I encountered while researching. I chose to import pandas as `pd` and use the read in function [1] as the  iris.data file is structured in a csv format [4]: `pd.read_csv()`.  
 I chose this method because it is straightforward and the pandas module is a foundational library for data analysis. Other options for importing including using JSON or pickle [4], but the pandas method seemed sufficient for this task. Also, pandas did not involve the more complicated capabilities of scikit-learn which might not be necessary at the beginner level[2] or the extra conversion steps of shutil and loss of metadata [3] which were other options for completing this task. 
 
@@ -144,15 +152,15 @@ I chose this method because it is straightforward and the pandas module is a fou
 [4]  AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021].  
 
 
-# 2.3 Analysing: Parsing the dataset  
+# 3 Analysing: Parsing the dataset  
 
-## 2.3.1 Reading in the Data  
+## 3.1 Reading in the Data  
 
 The csv dataset read in from the `.data` file is named as a variable, irisData, and then I created a dataframe, df, for it [4] The dataframe allows for two dimensional labeled data structures with columns of potentially different types [5].:  
 ``irisData = pd.read_csv('iris.data', names =["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"])`` 
   
 
-## 2.3.2 Writing to a .txt File  
+## 3.2 Writing to a .txt File  
 
 One of the primary objectives of the project is to analyse the data using python and to generate a summary of the data in `.txt` file format. I used the `with open()` method of populating my data to a .txt file [1]. This method was chosen because it will automatically close the file once I leave the block [2].   
 
@@ -160,7 +168,7 @@ The code used is:
 `with open("iris_summary.txt", "w") as f:`  
 The write ("w) option was chosen as I want the program to create the file if it does not already exist and write over it each time the program is ran [3]. This is important because if changes are made to the dataset, the information in the `.txt` file will be automatically updated when the program runs with the new data.  
 
-## 2.3.3 Parsing the Dataset as a whole 
+## 3.3 Parsing the Dataset as a whole 
 
 **Code block of the summary of the dataset as a whole**:  
  This will be broken down as I walk through the code below the code block.  
@@ -184,9 +192,8 @@ Then the basic analysis comprised of running several in-built pandas functions i
 - ``type()`` returning the type of the specified object [6]  
   returns: `<class 'pandas.core.frame.DataFrame'>`
 -  ``.info`` [7] provides a concise summary of the dataframe.  
- returns: 
- ``` 
-    <bound method DataFrame.info of      sepal length in cm  sepal width in cm  petal length in cm  petal width in cm         Species
+ returns:  
+```` <bound method DataFrame.info of      sepal length in cm  sepal width in cm  petal length in cm  petal width in cm         Species
 0                   5.1                3.5                 1.4                0.2     Iris-setosa
 1                   4.9                3.0                 1.4                0.2     Iris-setosa
 2                   4.7                3.2                 1.3                0.2     Iris-setosa
@@ -200,7 +207,8 @@ Then the basic analysis comprised of running several in-built pandas functions i
 149                 5.9                3.0                 5.1                1.8  Iris-virginica
 
 [150 rows x 5 columns]>
-```
+````
+
 -  `.shape`   provides a tuple of the dimensions of the dataframe.[8]  
   returns:  ``(150, 5)``
 
@@ -208,24 +216,26 @@ Then the basic analysis comprised of running several in-built pandas functions i
 returns: 
 ``Index(['sepal length in cm', 'sepal width in cm', 'petal length in cm', 'petal width in cm', 'Species'],dtype='object')``  
 
--  `.describe`provides a summary of statistics about the data frame columns including mean, sample standard deviation, and interquartile range [9].  
+-  `.describe` provides a summary of statistics about the data frame columns including mean, sample standard deviation, and interquartile range [9].  
 returns:  
-  sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-  count          150.000000         150.000000          150.000000         150.000000
-  mean             5.843333           3.054000            3.758667           1.198667
-  std              0.828066           0.433594            1.764420           0.763161
-  min              4.300000           2.000000            1.000000           0.100000
-  25%              5.100000           2.800000            1.600000           0.300000
-  50%              5.800000           3.000000            4.350000           1.300000
-  75%              6.400000           3.300000            5.100000           1.800000
-  max              7.900000           4.400000            6.900000           2.500000  
+
+````sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+count          150.000000         150.000000          150.000000         150.000000
+mean             5.843333           3.054000            3.758667           1.198667
+std              0.828066           0.433594            1.764420           0.763161
+min              4.300000           2.000000            1.000000           0.100000
+25%              5.100000           2.800000            1.600000           0.300000
+50%              5.800000           3.000000            4.350000           1.300000
+75%              6.400000           3.300000            5.100000           1.800000
+max              7.900000           4.400000            6.900000           2.500000 
+````  
 
 -  `.value_counts()`.  returns a series the counts of unique rows in the dataframe [10].  
 returns:  
-  Iris-setosa        50
-  Iris-virginica     50
-  Iris-versicolor    50
-  Name: Species, dtype: int64  
+``Iris-setosa        50
+Iris-virginica     50
+Iris-versicolor    50
+Name: Species, dtype: int64``
 
   
 
@@ -236,68 +246,35 @@ https://www.reddit.com/r/learnprogramming/comments/3yx9er/python_what_does_it_me
         Also key: https://pandas.pydata.org/pandas-docs/version/0.25.3/reference/api/pandas.DataFrame.info.html
  Issues with reading in -- tried .df and didnt work -- tried without and got errors but solved with using str to convert tuples into writeable format. Add step by step instructions here. shape - w3schools.com "Numpy Array Shape" Available: https://www.w3schools.com/python/numpy/numpy_array_shape.asp [Accessed 19 April 2021]. Pandas Dataframe.info would not print to the doc pandas.pydata.org "Pandas DataFrame.Info" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html [Accessed 19 April 2021].  learndatasci.org Pandas Python Tutorial Available: https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/  [Accessed 19 April 2021]. 
 
-## 2.3.3 Drilling into the Data - Parsing by Species of Iris  
+## 3.4 Drilling into the Data - Parsing by Species of Iris  
 
 More meaningful data could be obtained by using either the groupby() functions of pandas or converting the dataframe into a pivot table to isolate the three species types and look at the statistical information for each of them. 
 
 Code Block:  
-  f.write("Digging Deeper into the Data - Examining by Species\n\n\n\n")
-  \# Max, Min & Median values of each attribute by class
-  f.write("Maximum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').max()) +"\n\n")
-  f.write("Minimum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').min()) +"\n\n")
-  f.write("Median values for each attribute by Species: \n\n" + str(irisData.groupby('Species').median()) +"\n\n")
-  f.write("Pivot Table Showing Each Species Mean Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean)) + "\n\n")
-  f.write("Pivot Table Showing Each Species Median Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.median)) + "\n\n")
-  f.write("Pivot Table Showing Each Species Max Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.max)) + "\n\n")
-  f.write("Pivot Table Showing Each Species Min Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.min)) + "\n\n")`
+  ``f.write("Digging Deeper into the Data - Examining by Species\n\n\n\n")   
+f.write("Pivot Table Showing Each Species Mean Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean)) + "\n\n")  
+f.write("Pivot Table Showing Each Species Median Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.median)) + "\n\n")  
+f.write("Pivot Table Showing Each Species Max Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.max)) + "\n\n")  
+f.write("Pivot Table Showing Each Species Min Measurements: \n\n" + str(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.min)) + "\n\n")``  
 
-Breakdown of the code:  
-The groupby() Method:
-`'str(irisData.groupby('Species').max())` and ``.min()``, ``.median()``. The groupby() function with dataframes allows grouping by an obect, in this case the variable 'Species' and the ``.agg`` function is used to return a single aggregated value for each group (such as max, min, median) [11]. 
-returns: 
-  Maximum values for each attribute by Species:
-                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-    Species                                                                                      
-    Iris-setosa                     5.8                4.4                 1.9                0.6
-    Iris-versicolor                 7.0                3.4                 5.1                1.8
-    Iris-virginica                  7.9                3.8                 6.9                2.5
+**Breakdown of the code**:  
 
-**Observations**: This table shows that there is a significant difference between the maximum petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The maximum petal length for *Iris setosa* is significantly smaller than the other species and the maximum petal width for *Iris setosa*  is somewhat smaller as well. There is less variation between the species when comparing sepal length and width. However, the maximum sepal length of *Iris setosa* is still noteworthy. The maximum sepal width shows the least range of difference between the species.
-
-    Minimum values for each attribute by Species: 
-
-                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-    Species                                                                                      
-    Iris-setosa                     4.3                2.3                 1.0                0.1
-    Iris-versicolor                 4.9                2.0                 3.0                1.0
-    Iris-virginica                  4.9                2.2                 4.5                1.4  
-
-**Observations**: This table shows that there is a significant difference between the minimum petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The minimum petal length for *Iris setosa* is significantly smaller than the other species and the minimum petal width for *Iris setosa*  is somewhat smaller as well, although the range of difference is less than compairing petal length. There is very little variation between the species when comparing minimum sepal length and width. However, the minimum sepal length of *Iris setosa* is still slightly smaller than the other two. The sepal width shows no significant range of difference between the species.
-
-    Median values for each attribute by Species: 
-
-                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
-    Species                                                                                      
-    Iris-setosa                     5.0                3.4                1.50                0.2
-    Iris-versicolor                 5.9                2.8                4.35                1.3
-    Iris-virginica                  6.5                3.0                5.55                2.0  
-
-**Observations**: This table shows that there is a significant difference between the median petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The median petal length for *Iris setosa* is significantly smaller than the other species and the median petal width for *Iris setosa*  is somewhat smaller as well, although the range of difference is less than compairing petal length. There is very little variation between the species when comparing median sepal length and width. However, the median sepal length of *Iris setosa* is still slightly smaller than the other two. The sepal width does not appear to be a good indicator of differences between the species.
-
-The pivot table method:  
+The Pivot Table Method:  
 
 The pandas .pivot_table method allows for data digging by creating multiindex objects and allowing selective summaries of the table [11]. Here I chose 'Series' as the index and investigated this for the values of sepal lenth, sepal width, petal length, and petal width.  
 
-`(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean))`
+`(irisData.pivot_table(index='Species', values=["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"], aggfunc=np.mean))`  
+
 results: 
 
-Pivot Table Showing Each Species Mean Measurements: 
-                        petal length in cm  petal width in cm  sepal length in cm  sepal width in cm
-        Species                                                                                      
-        Iris-setosa                   1.464              0.244               5.006              3.418
-        Iris-versicolor               4.260              1.326               5.936              2.770
-        Iris-virginica                5.552              2.026               6.588              2.974  
+Pivot Table Showing Each Species Mean Measurements:  
 
+                         petal length in cm  petal width in cm  sepal length in cm  sepal width in cm 
+    Species                                                                                        
+    Iris-setosa                   1.464              0.244               5.006              3.418 
+    Iris-versicolor               4.260              1.326               5.936              2.770 
+    Iris-virginica                5.552              2.026               6.588              2.974  
+  
 **Observations**: This table shows that there is a significant difference between the mean petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The mean petal length for *Iris setosa* is significantly smaller than the other species and the mean petal width for *Iris setosa*  is somewhat smaller as well, although the range of difference is less than compairing petal length. There is very low range of variation between the species when comparing mean sepal length and width. 
 
 Pivot Table Showing Each Species Median Measurements: 
@@ -332,8 +309,50 @@ Pivot Table Showing Each Species Minimum Measurements:
 
 **Observations**: This table shows that there is a significant difference between the minimum petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The minimum petal length for *Iris setosa* is significantly smaller than the other species and the minimum petal width for *Iris setosa*  is somewhat smaller as well, although the range of difference is less than compairing petal length. There is very little variation between the species when comparing minimum sepal length and width. However, the minimum sepal length of *Iris setosa* is still slightly smaller than the other two. The sepal width shows no significant range of difference between the species.
 
+The Alternative groupby() Method:
+**Code Block**:
+f.write("Maximum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').max()) +"\n\n")  
+f.write("Minimum values for each attribute by Species: \n\n" + str(irisData.groupby('Species').min()) +"\n\n")  
+f.write("Median values for each attribute by Species: \n\n" + str(irisData.groupby('Species').median()) +"\n\n")
 
-### References for Part 2.3  
+**Code Walk Through:**
+
+`str(irisData.groupby('Species').max())` and ``.min()``, ``.median()``. The groupby() function with dataframes allows grouping by an object, in this case the variable 'Species' and the ``.agg`` function is used to return a single aggregated value for each group (such as max, min, median) [11]. 
+
+returns: 
+
+    Maximum values for each attribute by Species:
+                    sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+    Species                                                                                      
+    Iris-setosa                     5.8                4.4                 1.9                0.6
+    Iris-versicolor                 7.0                3.4                 5.1                1.8
+    Iris-virginica                  7.9                3.8                 6.9                2.5  
+
+
+**Observations**: This table shows that there is a significant difference between the maximum petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The maximum petal length for *Iris setosa* is significantly smaller than the other species and the maximum petal width for *Iris setosa*  is somewhat smaller as well. There is less variation between the species when comparing sepal length and width. However, the maximum sepal length of *Iris setosa* is still noteworthy. The maximum sepal width shows the least range of difference between the species.
+
+    Minimum values for each attribute by Species: 
+
+                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+    Species                                                                                      
+    Iris-setosa                     4.3                2.3                 1.0                0.1
+    Iris-versicolor                 4.9                2.0                 3.0                1.0
+    Iris-virginica                  4.9                2.2                 4.5                1.4  
+
+**Observations**: This table shows that there is a significant difference between the minimum petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The minimum petal length for *Iris setosa* is significantly smaller than the other species and the minimum petal width for *Iris setosa*  is somewhat smaller as well, although the range of difference is less than compairing petal length. There is very little variation between the species when comparing minimum sepal length and width. However, the minimum sepal length of *Iris setosa* is still slightly smaller than the other two. The sepal width shows no significant range of difference between the species.
+
+    Median values for each attribute by Species: 
+
+                     sepal length in cm  sepal width in cm  petal length in cm  petal width in cm
+    Species                                                                                      
+    Iris-setosa                     5.0                3.4                1.50                0.2
+    Iris-versicolor                 5.9                2.8                4.35                1.3
+    Iris-virginica                  6.5                3.0                5.55                2.0  
+
+**Observations**: This table shows that there is a significant difference between the median petal lenth in cm of the *Iris setosa* from the other two species *Iris versicolor* and *Iris virginica*. The median petal length for *Iris setosa* is significantly smaller than the other species and the median petal width for *Iris setosa*  is somewhat smaller as well, although the range of difference is less than compairing petal length. There is very little variation between the species when comparing median sepal length and width. However, the median sepal length of *Iris setosa* is still slightly smaller than the other two. The sepal width does not appear to be a good indicator of differences between the species.
+
+
+### References for Section 3
 
 [1] RealPython.com "Python With Open As Pattern" Available: https://realpython.com/working-with-files-in-python/#pythons-with-open-as-pattern  [Accessed 19 April 2021].      
 [2] Mertz, J. RealPython.com "Reading and Writing Files in Python (Guide)" Available: https://realpython.com/read-write-files-python/  [Accessed 19 April 2021].  
@@ -347,11 +366,11 @@ Pivot Table Showing Each Species Minimum Measurements:
 [10] pandas.pydata.org "Pandas .DataFrame.value_counts" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.value_counts.html [Accessed 20 April 2021].
 [11] pydata.org "Pandas pivot_table" Available: https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html [Accessed 21 April 2021].
 
-# Section 3 Visualising the Data
+# 4 Visualising the Data
 I chose to use the Python library Seaborn which builds upon Matplotlib to create high quality statistical graphics [1]. 
 Seaborn.pydata.org has extensive information on how to create plots to show relational, distributional, categorical, and regression with customisation of plot types, layout and colour and grid options.
 
-# 3.1.1 Histograms of the Variables
+# 4.1.1 Histograms of the Variables
 
 The first step is to create histograms of the variables (sepal length, sepal width, petal length, petal width).
 ``sns.displot`` the first step is to call seaborn and specify plot chosen as histogram ``.displot()``. 
@@ -374,64 +393,65 @@ Since there are multiple variables we are looking at, ``multiple="dodge"`` is us
 ``plt.savefig('Histogram_All_SepalLength.png')`` Matplotlib Pyplot has an option to save plots into a image file such as a png. [7] This saves to the current working directory.
 ``plt.clf()`` This clears the current figure from the code so that it does not add all the plots to one file [8]
 
-This process is repeated for sepal width, petal length, petal width in lines ENTER LINES HERE of the code.
+This process is repeated for sepal width, petal length, petal width.  
+
 Code block:  
-  # Histograms of the variables
+    \# Histograms of the variables
 
-  #sepal length
-  sns.set_style("darkgrid")
-  sns.displot(irisData, x = "sepal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
-  # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-  # Saves the plot as a png image
-  plt.savefig('Histogram_All_SepalLength.png')
-  plt.show() # Clears the plot so a new plot can be created. Without this, the subsequent plots are combined into the previous plot
+    #sepal length
+    sns.set_style("darkgrid")
+    sns.displot(irisData, x = "sepal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+    \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+    \# Saves the plot as a png image
+    plt.savefig('Histogram_All_SepalLength.png')
+    plt.show() # Clears the plot so a new plot can be created. Without this, the subsequent plots are combined into the previous plot
 
-  sns.set_style("darkgrid")
-  sns.displot(data=irisData, x="sepal length in cm", hue="Species", col="Species", kde=True)  
-  plt.savefig('Histogram_Individual_SepalLength.png')
-  plt.show() 
+    sns.set_style("darkgrid")
+    sns.displot(data=irisData, x="sepal length in cm", hue="Species", col="Species", kde=True)  
+    plt.savefig('Histogram_Individual_SepalLength.png')
+    plt.show() 
 
-  # sepal width
-  sns.set_style("darkgrid")
-  sns.displot(irisData, x = "sepal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
-  # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-  # Saves the plot as a png image
-  plt.savefig('Histogram_All_SepalWidth.png')
-  plt.show() # Clears the plot so further plots can be created.
+    \# sepal width
+    sns.set_style("darkgrid")
+    sns.displot(irisData, x = "sepal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+    \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+    \# Saves the plot as a png image
+    plt.savefig('Histogram_All_SepalWidth.png')
+    plt.show() # Clears the plot so further plots can be created.
 
-  sns.set_style("darkgrid")
-  sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True)  
-  plt.savefig('Histogram_Individual_SepalWidth.png')
-  plt.show() 
+    sns.set_style("darkgrid")
+    sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True)  
+    plt.savefig('Histogram_Individual_SepalWidth.png')
+    plt.show() 
 
-  # petal length
-  sns.set_style("darkgrid")
-  sns.displot(irisData, x = "petal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
-  # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-  # Saves the plot as a png image
-  plt.savefig('Histogram_All_PetalLength.png')
-  plt.show() # Clears the plot so further plots can be created.
+    \# petal length
+    sns.set_style("darkgrid")
+    sns.displot(irisData, x = "petal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+    \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+    \# Saves the plot as a png image
+    plt.savefig('Histogram_All_PetalLength.png')
+    plt.show() # Clears the plot so further plots can be created.
 
-  sns.set_style("darkgrid")
-  sns.displot(data=irisData, x="petal length in cm", hue="Species", col="Species", kde=True)  
-  plt.savefig('Histogram_Individual_PetalLength.png')
-  plt.show() 
+    sns.set_style("darkgrid")
+    sns.displot(data=irisData, x="petal length in cm", hue="Species", col="Species", kde=True)  
+    plt.savefig('Histogram_Individual_PetalLength.png')
+    plt.show() 
 
-  # petal width
-  sns.set_style("darkgrid")
-  sns.displot(irisData, x = "petal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
-  # dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
-  # Saves the plot as a png image
-  plt.savefig('Histogram_All_PetalWidth.png')
-  plt.show() # Clears the plot so further plots can be created. 
+    \# petal width
+    sns.set_style("darkgrid")
+    sns.displot(irisData, x = "petal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
+    \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
+    \# Saves the plot as a png image
+    plt.savefig('Histogram_All_PetalWidth.png')
+    plt.show() # Clears the plot so further plots can be created. 
 
-  sns.set_style("darkgrid")
-  sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", kde=True)  
-  plt.savefig('Histogram_Individual_PetalWidth.png')
-  plt.show()
+    sns.set_style("darkgrid")
+    sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", kde=True)  
+    plt.savefig('Histogram_Individual_PetalWidth.png')
+    plt.show()
 
 
-## 3.1.2 Analysis of Histograms
+## 4.1.2 Analysis of Histograms
 
 ![Histo_All_PetalLength](Histogram_All_PetalLength.png)  
 
@@ -463,7 +483,7 @@ Examing the histogram of all the species plotted on one histogram it is interest
 
 
 
-### References 3.1 
+### References 4.1 
 
 [1] seaborn.pydata.org "Seaborn Introduction" Available: https://seaborn.pydata.org/#:~:text=Seaborn%20is%20a%20Python%20data,attractive%20and%20informative%20statistical%20graphics. [Accessed 22 April 2021].  
 [2] seaborn.pydata.org "Seaborn Tutorial: KDE plots" Available: https://seaborn.pydata.org/tutorial/distributions.html#tutorial-kde [Accessed 22 April 2021].  
@@ -474,57 +494,256 @@ Examing the histogram of all the species plotted on one histogram it is interest
 [7] Matplotlib.org "Pyplot Savefig" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html [Accessed 22 April 2021]
 [8] Matplotlib.org "Pyplot.clf" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.clf.html [Accessed 22 April 2021].
 
-# 3.2 Making Scatterplots:  
+# 4.2 Making Boxplots:  
+A box plot is useful in explanatory data analysis. It helps summarise the dataset and show the distribution and can be particularly helpful in pointing out if there are outliers to the dataset which might through off some of the analysis [1]. Knowing whether there are outliers is important if this analysis might later be used to create machine learning algorithms. This program does not go into that area of exploration, but just wanted to note the occurances of outliers.  I overlayed the boxplots with a swarmplot which is like a strip plot, but with the points displayed vertically rather than on top of each other [3] for a more accurate picture of the occurances of observations and to emphasize outliers.
+
+**Walkthrough of a sample portion of the code**:  
+
+I chose to use a set of boxplots to plot the four variables and add a swarmplot overlay to emphasize the outliers.  
+
+``figboxswarmplot, (ax1, ax2, ax3, ax4)`` names the fig we are creating and unpacks the dedicated variables for each Axes.
+``= plt.subplots(1,4, figsize=(14,12)) ``sets the number of rows and columns and the size of the total figure [4].  
+
+The x axis on all plots is Species ``sns.boxplot(x='Species',y='sepal length in cm',data=irisData, ax=ax1)``  
+The y axis is a different variable per subplot and each one specifies which subplot axis it should be plotted to. 
+``sns.swarmplot(x="Species", y="sepal length in cm", data=irisData, color="brown", ax=ax1)``  A seaborn swarmplot is called to map the same information on top of the boxplot in the color brown to stand out from the boxplot colors and better show outliers.
+I borrowed the idea of overlaying the boxplot with a swarmplot from Binu's code on Kaggle [4].
+
+Finally, I added labels to the axis (except when the axis lay inbetween plots) ``ax1.set_ylabel("Lenght/Width in cm")`` 
+ax1.set_xlabel("Sepal Lenght in cm")  
+
+**Full code block**: 
+
+    figboxplot, (ax1, ax2, ax3, ax4) = plt.subplots(1,4, figsize=(14,12)) 
+    sns.boxplot(x='Species',y='sepal length in cm',data=irisData, ax=ax1) # x axis on all plots is Species, 
+    sns.swarmplot(x="Species", y="sepal length in cm", data=irisData, color="brown", ax=ax1) 
+    ax1.set_ylabel("Lenght/Width in cm") #labeling the axis
+    ax1.set_xlabel("Sepal Lenght in cm")
+
+    sns.boxplot(x='Species',y='sepal width in cm',data=irisData, ax=ax2)
+    sns.swarmplot(x="Species", y="sepal width in cm", data=irisData, color="brown", ax=ax2)
+    ax1.set_ylabel("") # no label as this lays in the middle of the figure
+    ax1.set_xlabel("Sepal Width in cm")
+
+    sns.boxplot(x='Species',y='petal length in cm',data=irisData, ax=ax3)
+    sns.swarmplot(x="Species", y="petal length in cm", data=irisData, color="brown", ax=ax3)
+    ax1.set_ylabel("")
+    ax1.set_xlabel("Petal Length in cm")
+
+    sns.boxplot(x='Species',y='petal width in cm',data=irisData, ax=ax4)
+    sns.swarmplot(x="Species", y="petal width in cm", data=irisData, color="brown", ax=ax4)
+    ax1.set_ylabel("")
+    ax1.set_xlabel("Petal Width in cm")
+    plt.savefig("IrisBoxplots.png")
+    plt.show()
+
+**Output and Observations**:
+![box_plot](Histogram_Individual_PetalWidth.png)
+
+The box and swarm plots show there are a few outliers from the data.  
+There is an outlier in *Iris virginica* with one observation of sepal width much smaller than the rest of the species.  
+*Iris virginica* also has some larger and smaller outliers for petal length.
+*Iris versicolor* and *Iris setosa* have some outliers for petal width.  
+*Iris setosa* also has two outliers of sepal length that are bigger than the rest of the observations.
+The swarm plot overlay is also helpful for seeing when there is a clustering of observations versus a broad spread through the ranges.  
+
+
+### 4.2 References:  
+[1] stasticscanada.gc.ca "Constructing Box and Whiskerplots" Available: https://www150.statcan.gc.ca/n1/edu/power-pouvoir/ch12/5214889-eng.htm#:~:text=A%20box%20and%20whisker%20plot%20is%20a%20way%20of%20summarizing,central%20value%2C%20and%20its%20variability. [Accessed 27 April 2021].
+[2] pythonbasics.org "Seaborn Boxplot Tutorial" Available: https://pythonbasics.org/seaborn-boxplot/ [Accessed 27 April 2021]
+[3] Allen Yu, Claire Chung, Aldrin Yim "Strip Plots and Swarm Plots" in *Matplotlib 2.x By Example* O'Reilly Publishers. Available: https://www.oreilly.com/library/view/matplotlib-2x-by/9781788295260/f71c5b21-e7ea-447f-b898-0e38ba786ad7.xhtml [Accessed 29 April 2021].
+[4] Binu. "Seaborn Matplotlib Iris Data Visualization Code_1" Available: https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1 [Accessed 29 April 2021].
+[5] Matplotlib.org "Creating Multiple Subplots using plt.subplot" Available: https://matplotlib.org/3.1.0/gallery/subplots_axes_and_figures/subplots_demo.html [Accessed 29 April 2021].
+
+# 4.3 Making Scatterplots:  
 
 Scatterplots can show the distribution of the four variable types color coded by the species type which is ideal for drawing conclusions about the dataset. This investigation looks at the six possible combinations of variable pairs:  
 
-1. sepal length and sepal width
+1. Sepal Length and Sepal Width
 2. Sepal Length and Petal Length
 3. Sepal Length and Petal Width
 4. Sepal Width and Petal Length
 5. Sepal Width and Petal Width
 6. Petal Length and Petal Width
 
-## 3.2.1 Pairplot
+## 4.3.1 Pairplot
 Seaborn has functionality called pairplot that allows for visualisation of multidimensional relationships in the data and generates plots of the multiple combinations of the paired data.
 For the Iris Dataset a pair plot will look at the above six combinations of variables.  
 It also looks at the mirrored versions of the above pairs.  
-Finally, pairplots have four plots in the diagonal row can contain "a univariate distribution plot is drawn to show the marginal distribution of the data in each column" or can be modified to show a subset of variables or plot different variables on the rows and columns [1]. It is also possible to show a subset of variables or plot different variables on the rows and columns.  
+Finally, pairplots have four plots in the diagonal row can contain "a univariate distribution plot is drawn to show the marginal distribution of the data in each column" or can be modified to show a subset of variables or plot different variables on the rows and columns [1]. It is also possible to show a subset of variables or plot different variables on the rows and columns.  The code used was based on an example from the Python Data Science Handbook [6].
 
-Code:
+Code Block:
 
     sns.set_style("whitegrid")
     sns.pairplot(irisData, hue = "Species", diag_kind = "hist", palette = "colorblind", height = 2)
     plt.suptitle("Pairplot Comparing the Four Variables", y= 1.0001) #y = > 1 so the title appears slightly above the plot
     plt.savefig("pairplot.png")
-    plt.show()```
- Code walkthrough:
+    plt.show()  
+
+ Code walkthrough:  
+
  `sns.set_style("whitegrid")` adds a grid to the plots and selects the style of it.  
  ``sns.pairplot`` calls seaborn's pairplot functionality.  
  Pairplot has many parameter options [1] but the most import ones are setting where the data comes from `(irisData, hue = "Species",` and setting the hue which determines what variable sets the color coding, in this case the Species. This allows for patterns to be easily seen within the different Iris species across the range of variables.  
  `diag_kind = "hist"` this set the diagonal row to show four histograms, one for each variable with the color coding to represent the Iris species.  
- `palette = "colorblind", height = 2)`For further customisation I set the color palette to "colorblind" for optimal accessibility and the height to 2 for optimal viewing of all the plots.
+ `palette = "colorblind", height = 2)`For further customisation I set the color palette to "colorblind" for optimal accessibility and the height to 2 for optimal viewing of all the plots. Originally I had used size instead of height as per tutorial instructions but it kept throwing an error. Stackoverflow advised that this changed to height and that sorted the error [5].
 
  The plots automatically show x and y axis labels and a legend but not a title. Using ``plt.title()`` caused the title to show up in the middle of the plots, so I had do some research and found a way to add a suptitle `plt.suptitle("Pairplot Compairing the Four Variables", y=1.0001)`. The y axis coordinated had to be added as greater than 1 or else the plot title shows up covering plot data [2].  
 
  The plot was then saved as a png ``plt.savefig("pairplot.png")``.  
  And set to show so it will open when the code is ran `plt.show()`.  
 
- ## 3.2.2 Image of the Pairplot
+## 4.3.2 Image of the Pairplot and Analysis
 
  ![Pairplot](pairplot.png)
 
- ## 3.2.3 Observations about the Pairplot
+ **Observations about the Pairplot:**
   A cursory view of the plots show that the most useful features for ideniting species are the petal length and petal width variables. The plots showing these variables have a clear clustering pattern by species type, with only minimal overlap of *Iris versicolor* and *Iris virginica*. 
 
   *Iris setosa* is easily identifiable and therefore is considered linearly seperable [3].
 
+## 4.3.3 Individual Scatterplots  
 
-# Graphs of the general data -- min, max, deviation, etc?
-ADD HERE
+Done individually it is easier to make observations
+Code blocks:
+    
+Code walk through of first one for example:  
+
+sepal length sepal width scatterplot  
+
+``sns.set_style("whitegrid")`` adds background grid and set style
+``sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","sepal width in cm").add_legend()`` A facet grid shows conditional relationships. Hue specifies what variable sets the color coding of the plot.
+``.map()`` sets the type of plot and selects the columns for the x and y axis.  
+``.add_legend()`` had to be added to explain what the colors represent.
+``plt.title("Examining Sepal Length and Sepal Width Correlation")`` adds the plots title.
+``plt.savefig("scatter_sl_sw.png")`` saves the plot to a .png file in the same repository.
+``plt.show()`` opens up the plot when the program runs.
+
+**Code block for each variable, output and analysis:**
+(see example above for explanations of code) 
+
+sepal length sepal width scatterplot  
+
+    sns.set_style("whitegrid")`` 
+    sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","sepal width in cm").add_legend()`` 
+    plt.title("Examining Sepal Length and Sepal Width Correlation")`` adds the plots title.
+    plt.savefig("scatter_sl_sw.png")`` saves the plot to a .png file in the same repository.
+    plt.show()`` opens up the plot when the program runs.  
 
 
-### References 3.2.1
+**Output**:  
+
+![scatterplot_sepal_length_width](scatter_sl_sw.png)  
+
+**Observations**:  
+ When looking at a plot visualising the sepal lenth/sepal width of each species, *Iris setosa* is linearly seperable. *Iris virginica* and *Iris versicolor* are not linearly seperable as there is much overlap between observations of their recorded sepal length/sepal width. 
+
+
+**Code Block**:
+sepal length petal width scatterplot  
+
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","petal length in cm").add_legend()
+    plt.title("Examining Sepal Length and Petal Length Correlation")
+    plt.savefig("scatter_sl_pl.png")
+    plt.show()  
+
+
+**Output**:  
+
+![scatterplot_sepalLength_petalLength](scatter_sl_pl.png)  
+
+**Observations**:  
+When looking at a plot visualising the sepal lenth/petal length of each species, *Iris setosa* is linearly seperable.  
+*Iris virginica* and *Iris versicolor* are mostly seperate but there is some overlap between these categories of their recorded sepal length/petal length. 
+
+**Code Block**:
+sepal length petal width scatterplot  
+
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","petal width in cm").add_legend()
+    plt.title("Examining Sepal Length and Petal Width Correlation")
+    plt.savefig("scatter_sl_pw.png")
+    plt.show()  
+
+
+**Output**:  
+
+![scatterplot_sepalLength_petalwidth](scatter_sl_pw.png)  
+
+**Observations**:  
+When looking at a plot visualising the sepal lenth/petal width of each species, *Iris setosa* is linearly seperable.  
+*Iris virginica* and *Iris versicolor* are mostly seperate but there is some overlap between these categories of their recorded sepal length/petal width.   
+
+**Code Block**:
+sepal width petal length scatterplot  
+
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal width in cm","petal length in cm").add_legend()
+    plt.title("Examining Sepal Width and Petal Length Correlation")
+    plt.savefig("scatter_sw_pl.png")
+    plt.show()  
+
+
+**Output**: 
+
+![scatterplot_sepalWidth_petalLength](scatter_sw_pl.png) 
+
+**Observations**:  
+When looking at a plot visualising the sepal width/petal length of each species, *Iris setosa* is linearly seperable.  
+*Iris virginica* and *Iris versicolor* are mostly seperate but there is some overlap between these categories of their recorded sepal width/petal length.   
+
+**Code Block**:
+sepal width petal width scatterplot 
+
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal width in cm","petal width in cm").add_legend()
+    plt.title("Examining Sepal Width and Petal Width Correlation")
+    plt.savefig("scatter_sw_pw.png")
+    plt.show()  
+
+
+**Output**: 
+
+![scatterplot_sepalWidth_petalWidth](scatter_sw_pw.png) 
+
+**Observations**:   
+When looking at a plot visualising the sepal width/petal width of each species, *Iris setosa* is linearly seperable.  
+*Iris virginica* and *Iris versicolor* are mostly seperate but there is some overlap between these categories of their recorded sepal width/petal width.   
+
+**Code Block**:
+petal length petal width  
+
+    sns.set_style("whitegrid")
+    sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"petal length in cm","petal width in cm").add_legend()
+    plt.title("Examining Petal Length and Petal Width Correlation")
+    plt.savefig("scatter_pl_pw.png")
+    plt.show()  
+
+
+**Output**: 
+
+![scatterplot_petalLength_petalWidth](scatter_pl_pw.png) 
+
+**Observations**:   
+When looking at a plot visualising the petal length/petal width of each species, *Iris setosa* is linearly seperable.  
+*Iris virginica* and *Iris versicolor* are mostly seperate but there is some overlap between these categories of their recorded petal length/petal width. 
+
+
+
+### References 4.3 
 [1] seaborn.pydata.org "Seaborn Pairplot" Available: https://seaborn.pydata.org/generated/seaborn.pairplot.html#:~:text=Plot%20pairwise%20relationships%20in%20a%20dataset.&text=The%20diagonal%20plots%20are%20treated,on%20the%20rows%20and%20columns. [Accessed 23 April 2021].
 [2] Martin S. Stockoverflow.com "How to Show the Title for the Diagram in Seaborn Plotpair" https://stackoverflow.com/questions/36813396/how-to-show-the-title-for-the-diagram-of-seaborn-pairplot-or-pridgrid [Accessed 23 April 2021].
 [3] Applied AI Course. "Iris Dataset EDA LEecture 1" Available: https://www.youtube.com/watch?v=FLuqwQgSBDw&list=PLupD_xFct8mFDeCqoUAWZpUddeqmT28_L [Accessed 23 April 2021].
+[4] geeksforgeeks.org "Plotting graph For IRIS Dataset Using Seaborn And Matplotlib" https://www.geeksforgeeks.org/plotting-graph-for-iris-dataset-using-seaborn-and-matplotlib/ [Accessed 23 April 2021].
+[5] stackoverflow.com "Change Seaborn Pair Plot Figure Size" Available: https://stackoverflow.com/questions/51400076/change-seaborn-pair-plot-figure-size
+[6] VanderPlas, Jake. *Python Data Science Handbook* "Visualization with Seaborn" Available: https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html [Accessed 23 April 2021].
+
+## 5. Conclusion
+
+The program ends with code that prints a simple messager to let the user know the analysis has been run and where they can go to view the images and text documents of analysis:  
+``print("The program has completed the analysis of the Iris data set and printed detailed analysis to the file:iris_summary.txt.\nThe program has also saved images (.png files) of plots to the current working directory. ")``
+
+This was just a brief exploration and analysis of Fisher's Iris data set. Further work could be done to explore machine learning options with this dataset. 
+
+

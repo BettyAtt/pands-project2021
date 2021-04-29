@@ -105,20 +105,49 @@ sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", 
 plt.savefig('Histogram_Individual_PetalWidth.png')
 plt.show()
 
+# Making Boxplots:
+# set of boxplots with swarm overlay to located outliers
+figboxplot, (ax1, ax2, ax3, ax4) = plt.subplots(1,4, figsize=(14,12)) 
+plt.suptitle("Boxplots with Swarmplots Comparing the Four Variables", y= 1.0001)
+# setout the number of subplots in the figure, the number of rows and columns,
+# and the size of the total figure.
+sns.boxplot(x='Species',y='sepal length in cm',data=irisData, ax=ax1) # x axis on all plots is Species, 
+# y is the individual variables, and the ax tells which subplot to plot the data to.
+sns.swarmplot(x="Species", y="sepal length in cm", data=irisData, color="brown", ax=ax1) 
+# overlay of swarmplot to better determine outliers
+# code adapted from https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
+ax1.set_ylabel("Lenght/Width in cm") #labeling the axis
+ax1.set_xlabel("Sepal Lenght in cm")
+
+sns.boxplot(x='Species',y='sepal width in cm',data=irisData, ax=ax2)
+sns.swarmplot(x="Species", y="sepal width in cm", data=irisData, color="brown", ax=ax2)
+ax1.set_ylabel("") # no label as this lays in the middle of the figure
+ax1.set_xlabel("Sepal Width in cm")
+
+sns.boxplot(x='Species',y='petal length in cm',data=irisData, ax=ax3)
+sns.swarmplot(x="Species", y="petal length in cm", data=irisData, color="brown", ax=ax3)
+ax1.set_ylabel("")
+ax1.set_xlabel("Petal Length in cm")
+
+sns.boxplot(x='Species',y='petal width in cm',data=irisData, ax=ax4)
+sns.swarmplot(x="Species", y="petal width in cm", data=irisData, color="brown", ax=ax4)
+ax1.set_ylabel("")
+ax1.set_xlabel("Petal Width in cm")
+plt.savefig("IrisBoxplots.png")
+plt.show()
+
+
 # Making Scatterplots:
-# Seaborn has functionality called pairplot that allows for visualisation of multidimensional relationships in the data.
+# Pairplot: Seaborn has functionality that allows for visualisation of multidimensional relationships in the data.
 sns.set_style("whitegrid")
 sns.pairplot(irisData, hue = "Species", diag_kind = "hist", palette = "colorblind", height = 2)
 plt.suptitle("Pairplot Comparing the Four Variables", y= 1.0001) #y = > 1 so the title appears slightly above the plot
-# https://stackoverflow.com/questions/36813396/how-to-show-the-title-for-the-diagram-of-seaborn-pairplot-or-pridgrid
 plt.savefig("pairplot.png")
 plt.show()
-# from https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html
-# changed size to height because threw error as new update in seaborn
-# https://stackoverflow.com/questions/51400076/change-seaborn-pair-plot-figure-size
+# reference: https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html
 
-# Done individually it is easier to make observations
-# https://www.geeksforgeeks.org/plotting-graph-for-iris-dataset-using-seaborn-and-matplotlib/
+
+# Individual Scatterplots:
 
 #sepal length sepal width scatterplot
 sns.set_style("whitegrid") # add background grid and set style
@@ -163,3 +192,5 @@ sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"petal length in 
 plt.title("Examining Petal Length and Petal Width Correlation")
 plt.savefig("scatter_pl_pw.png")
 plt.show()
+
+print("The program has completed the analysis of the Iris data set and printed detailed analysis to the file:iris_summary.txt.\nThe program has also saved images (.png files) of plots to the current working directory. ")
