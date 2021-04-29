@@ -237,14 +237,6 @@ Iris-virginica     50
 Iris-versicolor    50
 Name: Species, dtype: int64``
 
-  
-
-Issues encountered: 
-for ``.info`` getting:    ``<bound dataframe.info issue``
-look at the <bound dataframe.info issue later -- https://stackoverflow.com/questions/46239946/attempt-to-access-dataframe-column-displays-bound-method-ndframe-xxx
-https://www.reddit.com/r/learnprogramming/comments/3yx9er/python_what_does_it_mean_to_call_something/
-        Also key: https://pandas.pydata.org/pandas-docs/version/0.25.3/reference/api/pandas.DataFrame.info.html
- Issues with reading in -- tried .df and didnt work -- tried without and got errors but solved with using str to convert tuples into writeable format. Add step by step instructions here. shape - w3schools.com "Numpy Array Shape" Available: https://www.w3schools.com/python/numpy/numpy_array_shape.asp [Accessed 19 April 2021]. Pandas Dataframe.info would not print to the doc pandas.pydata.org "Pandas DataFrame.Info" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html [Accessed 19 April 2021].  learndatasci.org Pandas Python Tutorial Available: https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/  [Accessed 19 April 2021]. 
 
 ## 3.4 Drilling into the Data - Parsing by Species of Iris  
 
@@ -365,6 +357,8 @@ returns:
 [9] tutorialspoint.com "Python Pandas Descriptive Statistics" Available: tutorialspoint.com/python_pandas/python_pandas_descriptive_statistics.htm [Accessed 20 April 2021].
 [10] pandas.pydata.org "Pandas .DataFrame.value_counts" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.value_counts.html [Accessed 20 April 2021].
 [11] pydata.org "Pandas pivot_table" Available: https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html [Accessed 21 April 2021].
+[12] pandas.pydata.org "Pandas DataFrame.Info" Available: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html [Accessed 19 April 2021].  
+[13]learndatasci.org Pandas Python Tutorial Available: https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/  [Accessed 19 April 2021]. 
 
 # 4 Visualising the Data
 I chose to use the Python library Seaborn which builds upon Matplotlib to create high quality statistical graphics [1]. 
@@ -389,7 +383,9 @@ The bin is when the entire range of values is divided into a series of intervals
 Since there are multiple variables we are looking at, ``multiple="dodge"`` is used to display them more clearly in the histographs that contain data regarding all three species of Iris [6]. Other options were using a "layer" or "step" approach but in this case the dodge made it easiest to see the counts of measurements the distinctive Iris types.
 
 ``plt.grid()`` A grid is used to make understanding the data easier. 
-
+``plt.title("Sepal Lengths of Each Iris Species")`` added a title to the grid.
+``plt.tight_layout()`` helped with formatting so that the title would be seen.
+``plt.subplots_adjust(top=0.88)`` this adjustment because the title kept getting cut off in the saved plot image [9].
 ``plt.savefig('Histogram_All_SepalLength.png')`` Matplotlib Pyplot has an option to save plots into a image file such as a png. [7] This saves to the current working directory.
 ``plt.clf()`` This clears the current figure from the code so that it does not add all the plots to one file [8]
 
@@ -403,11 +399,17 @@ Code block:
     sns.displot(irisData, x = "sepal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
     \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
     \# Saves the plot as a png image
+    plt.title("Sepal Lengths of Each Iris Species")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
     plt.savefig('Histogram_All_SepalLength.png')
     plt.show() # Clears the plot so a new plot can be created. Without this, the subsequent plots are combined into the previous plot
 
     sns.set_style("darkgrid")
-    sns.displot(data=irisData, x="sepal length in cm", hue="Species", col="Species", kde=True)  
+    sns.displot(data=irisData, x="sepal length in cm", hue="Species", col="Species", kde=True) 
+    plt.title("Sepal Lengths in CM")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88) 
     plt.savefig('Histogram_Individual_SepalLength.png')
     plt.show() 
 
@@ -416,11 +418,17 @@ Code block:
     sns.displot(irisData, x = "sepal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
     \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
     \# Saves the plot as a png image
+    plt.title("Sepal Width of Each Iris Species")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
     plt.savefig('Histogram_All_SepalWidth.png')
     plt.show() # Clears the plot so further plots can be created.
 
     sns.set_style("darkgrid")
-    sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True)  
+    sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True)
+    plt.title("Sepal Widths in CM")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)  
     plt.savefig('Histogram_Individual_SepalWidth.png')
     plt.show() 
 
@@ -429,11 +437,17 @@ Code block:
     sns.displot(irisData, x = "petal length in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
     \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
     \# Saves the plot as a png image
+    plt.title("Petal Lengths of Each Iris Species")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
     plt.savefig('Histogram_All_PetalLength.png')
     plt.show() # Clears the plot so further plots can be created.
 
     sns.set_style("darkgrid")
     sns.displot(data=irisData, x="petal length in cm", hue="Species", col="Species", kde=True)  
+    plt.title("Petal Lengths in CM")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
     plt.savefig('Histogram_Individual_PetalLength.png')
     plt.show() 
 
@@ -442,11 +456,17 @@ Code block:
     sns.displot(irisData, x = "petal width in cm", hue="Species", kde=True, multiple="dodge") # hue color codes by that variable
     \# dodge makes the different species easier to see # kde adds a kernal density estimator line to the plot
     \# Saves the plot as a png image
+    plt.title("Petal Width of Each Iris Species")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
     plt.savefig('Histogram_All_PetalWidth.png')
     plt.show() # Clears the plot so further plots can be created. 
 
     sns.set_style("darkgrid")
     sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", kde=True)  
+    plt.title("Petal Width of Each Iris Species")
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.88)
     plt.savefig('Histogram_Individual_PetalWidth.png')
     plt.show()
 
@@ -493,6 +513,7 @@ Examing the histogram of all the species plotted on one histogram it is interest
 [6] seaborn.pydata.org "Seaborn Distrubution Tutorial" Available: https://seaborn.pydata.org/tutorial/distributions.html [Accessed 22 April 2021].
 [7] Matplotlib.org "Pyplot Savefig" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html [Accessed 22 April 2021]
 [8] Matplotlib.org "Pyplot.clf" Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.clf.html [Accessed 22 April 2021].
+[9] Davison, TM. Stackoverflow.com: "Python: Savefig cuts off title " Available: https://stackoverflow.com/questions/35992492/python-savefig-cuts-off-title [Accessed 29 April 2021].
 
 # 4.2 Making Boxplots:  
 A box plot is useful in explanatory data analysis. It helps summarise the dataset and show the distribution and can be particularly helpful in pointing out if there are outliers to the dataset which might through off some of the analysis [1]. Knowing whether there are outliers is important if this analysis might later be used to create machine learning algorithms. This program does not go into that area of exploration, but just wanted to note the occurances of outliers.  I overlayed the boxplots with a swarmplot which is like a strip plot, but with the points displayed vertically rather than on top of each other [3] for a more accurate picture of the occurances of observations and to emphasize outliers.
@@ -538,7 +559,7 @@ ax1.set_xlabel("Sepal Lenght in cm")
     plt.show()
 
 **Output and Observations**:
-![box_plot](Histogram_Individual_PetalWidth.png)
+![box_plot](IrisBoxplots.png)
 
 The box and swarm plots show there are a few outliers from the data.  
 There is an outlier in *Iris virginica* with one observation of sepal width much smaller than the rest of the species.  
