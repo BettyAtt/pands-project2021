@@ -121,7 +121,7 @@ This library is useful for making some of the simpler plots to illustrate the da
 - **seaborn**: Seaborn library works with matplotlib and its strengths lay in visualising random distributions [5].  
 
 
-### References for Part 2.1:
+### References for Section 2.1:
 
 [1] AskPython.com "How to Read a .data file?"  Available: https://www.askpython.com/python/examples/read-data-files-in-python [Accessed 18 April 2021]   
 [2] w3schools.com "NumPy Introduction" Available: https://www.w3schools.com/python/numpy/numpy_intro.asp [Accessed 18 April 2021].     
@@ -144,7 +144,7 @@ the next step is to save the UCI `.data` file into my repository folder and to r
 There are several methods for opening the Iris data set in a Python program that I encountered while researching. I chose to import pandas as `pd` and use the read in function [1] as the  iris.data file is structured in a csv format [4]: `pd.read_csv()`.  
 I chose this method because it is straightforward and the pandas module is a foundational library for data analysis. Other options for importing including using JSON or pickle [4], but the pandas method seemed sufficient for this task. Also, pandas did not involve the more complicated capabilities of scikit-learn which might not be necessary at the beginner level[2] or the extra conversion steps of shutil and loss of metadata [3] which were other options for completing this task. 
 
-### Referenences for Part 2.2  
+### References for Section 2.2  
 
 [1] w3schools.com "Pandas Tutorial" Available: https://www.w3schools.com/python/pandas/pandas_csv.asp [Accessed 19 April 2021]  
 [2] Scikit-Learn.org "Loading Iris Data Set" Available: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html [Accessed 19 April 2021].    
@@ -762,9 +762,42 @@ When looking at a plot visualising the petal length/petal width of each species,
 
 ## 5. Conclusion
 
-The program ends with code that prints a simple messager to let the user know the analysis has been run and where they can go to view the images and text documents of analysis:  
-``print("The program has completed the analysis of the Iris data set and printed detailed analysis to the file:iris_summary.txt.\nThe program has also saved images (.png files) of plots to the current working directory. ")``
+**Signifying the program has successfully executed:**  
+The program ends with code that prints a simple message to let the user know the analysis has been run and where they can go to view the images and text documents of analysis:  
 
-This was just a brief exploration and analysis of Fisher's Iris data set. Further work could be done to explore machine learning options with this dataset. 
+``print("The program has completed the analysis of the Iris data set and printed detailed analysis to the file:iris_summary.txt.\nThe program has also saved images (.png files) of plots to the current working directory. ")``  
+
+**Areas for further research:**
+
+This was just a brief exploration and analysis of Fisher's Iris data set. Based on this analysis of the data set it appears there is enough consistency of variables within species type that an algorithm can be used to sort species based on their variables.  
+
+Further work could be done to explore machine learning options with this dataset. A brief examination of the existing research in this area reveals that the Python library sci-kit learn (sk learn) is often used because it has simple and effective tools for predictive data analysis [1]. Looking at a few examples projects [2,3,4,5,6] this is often done by splitting the data set into a training data set and a test data set. The running the data through various tests and checking for accuracy. Some options used included: 
+
+- **K means**, a simple unsupervised clustering algorithm which groups the unlabeled dataset into different clusters. "It is an iterative algorithm that divides the unlabeled dataset into k different clusters in such a way that each dataset belongs only one group that has similar properties." [7] 
+
+- **Logistic Regression** is a supervised learning  classification algorithm "used to predict the probability of a target variable. The nature of target or dependent variable is dichotomous, which means there would be only two possible classes." [8]  
+
+- **K – Nearest Neighbour (KNN)** is another simple supervised machine learning algorithm that is used both for classification and regression problems [9].  
+
+- **Support Vector Machine (SVM)** "In order to do so the dataset is separated in a set used for training and a set used for testing. The error rate, after training, for the training set should be lower than the error rate on the test set" [12].
+- **Decision Trees** are a type of supervised machine learning. "The data is continuously split according to a certain parameter. The tree can be explained by two entities, namely decision nodes and leaves. The leaves are the decisions or the final outcomes. And the decision nodes are where the data is split" [10].
+- **Naive Bayes classifier** is "a classification technique based on Bayes’ Theorem with an assumption of independence among predictors. In simple terms, a Naive Bayes classifier assumes that the presence of a particular feature in a class is unrelated to the presence of any other feature." [11].  
+
+Being a balanced data set of a manageable size with lots of existing research done on it, Fisher's Iris Data Set is ideal both for examining how to analyse and visualise the data set as well as for testing various machine learning algorithms to test how well they can classify into species type.
 
 
+
+### References for Section 5
+[1] scikit-learn.org "Machine Learning in Python" Available:  https://scikit-learn.org/stable/ [Accessed 30 April 2021].
+[2] Venkataraman, A. "Machine Learning with Iris Dataset" Available: https://www.kaggle.com/sixteenpython/machine-learning-with-iris-dataset#INTO-THE-REALM-OF-MACHINE-LEARNING [Accessed 30 April 2021]. 
+[3] Yang, Y. "A study of pattern recognition of Iris
+flower based on Machine Learning " [Bachelor's Thesis for Turku University of Applied Sciences] Available: https://core.ac.uk/download/pdf/38095118.pdf [Accessed 30 April 2021]. 
+[4] Hakim, L. "Decision Tree Iris Flower" Available: https://www.academia.edu/31703808/Decision_Tree_Iris_Flower [Accessed 30 April 2021]. 
+[5] Galarnyk, M. "IRIS data set (Multivariate Gaussian Classifier, PCA, Python)" Available: https://www.academia.edu/23596406/IRIS_data_set_Multivariate_Gaussian_Classifier_PCA_Python_ [Accessed 30 April 2021].
+[6] Schutten, M. " An Analysis on Better Testing than Training Performances on the Iris Dataset"
+[7] javatpoint.com "K-Means Clutering Algorithm" Available: https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning [Accessed 30 April 2021].
+[8] tutorialspoint.com "Introduction to Logistic Regression" Available: https://www.tutorialspoint.com/machine_learning_with_python/machine_learning_with_python_classification_algorithms_logistic_regression.htm#:~:text=Logistic%20regression%20is%20a%20supervised,be%20only%20two%20possible%20classes. [Accessed 30 April 2021].
+[9] towardsdatascience.com "Machine Learning Basics with the K-Nearest Neighbors Algorithm" Available: https://towardsdatascience.com/machine-learning-basics-with-the-k-nearest-neighbors-algorithm-6a6e71d01761#:~:text=Summary,that%20data%20in%20use%20grows. [Accessed 30 April 2021].
+[10] xoriant.com "Decision Trees for Classification: A Machine Learning Algorithm" Available: https://www.xoriant.com/blog/product-engineering/decision-trees-machine-learning-algorithm.html#:~:text=%7C-,Blog,namely%20decision%20nodes%20and%20leaves [Accessed 30 April 2021].
+[11] Ray, S. "6 Easy Steps to Learn Naive Bayes Algorithm with Codes in Python and R" Available: https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/ [Accessed 30 April 2021].
+[12] Gandhi, R. "Support Vector Machine--Introduction to Machine Learning Algorithms" Available: https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47 [Accessed 30 April 2021].

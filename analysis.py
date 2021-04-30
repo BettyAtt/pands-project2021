@@ -10,11 +10,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import sklearn as sk 
 
 #  Uploading UCI's Iris dataset and adding column names to it 
-#irisData = pd.read_csv('iris.data', names =["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"])  # reading in the data file 
-#df = pd.DataFrame(irisData)
 
 csv = ('iris.data')
 names = ["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm", "Species"]
@@ -28,8 +25,6 @@ with open("iris_summary.txt", "w") as f:
     # Basic investigation into the dataset:
     f.write("Object Type for iris Data:\n\n" + str(type(irisData)) + "\n\n\n")
     f.write("This shows the basic info of the data set.\nIt includes a sampling of the head and tail of the data, the index and the number of rows and columns.\n\n" + str(irisData.info) + "\n\n\n")
-    # look at the <bound dataframe.info issue later -- https://stackoverflow.com/questions/46239946/attempt-to-access-dataframe-column-displays-bound-method-ndframe-xxx
-    # https://www.reddit.com/r/learnprogramming/comments/3yx9er/python_what_does_it_mean_to_call_something/
     irisShape = irisData.shape # this gives me the shape of the matrix or data table - 150 rows, five columns
     f.write("Data Table Shape; The number of rows and number of columns:\n\n " + str(irisShape) + "\n\n\n")
     f.write("The Index of the columns are provided below along with the datatype:\n\n" + str(irisData.columns) + "\n\n\n") # this prints the Index showing titles of the columns)
@@ -75,7 +70,7 @@ plt.title("Sepal Widths of Iris Species in CM")
 plt.tight_layout() 
 plt.subplots_adjust(top=0.88) 
 plt.savefig('Histogram_All_SepalWidth.png') # Saves the plot as a png image
-plt.show() # Clears the plot so further plots can be created.
+plt.show() # pops open the plot when the program runs
 
 sns.set_style("darkgrid")
 sns.displot(data=irisData, x="sepal width in cm", hue="Species", col="Species", kde=True) 
@@ -92,8 +87,8 @@ sns.displot(irisData, x = "petal length in cm", hue="Species", kde=True, multipl
 plt.title("Petal Length of Iris Species in CM")
 plt.tight_layout() 
 plt.subplots_adjust(top=0.88) 
-plt.savefig('Histogram_All_PetalLength.png')# Saves the plot as a png image
-plt.show() # Clears the plot so further plots can be created.
+plt.savefig('Histogram_All_PetalLength.png')
+plt.show() 
 
 sns.set_style("darkgrid")
 sns.displot(data=irisData, x="petal length in cm", hue="Species", col="Species", kde=True)  
@@ -110,8 +105,8 @@ sns.displot(irisData, x = "petal width in cm", hue="Species", kde=True, multiple
 plt.title("Petal Width of Iris Species in CM")
 plt.tight_layout() 
 plt.subplots_adjust(top=0.88) 
-plt.savefig('Histogram_All_PetalWidth.png')# Saves the plot as a png image
-plt.show() # Clears the plot so further plots can be created. 
+plt.savefig('Histogram_All_PetalWidth.png')
+plt.show()
 
 sns.set_style("darkgrid")
 sns.displot(data=irisData, x="petal width in cm", hue="Species", col="Species", kde=True)
@@ -167,7 +162,7 @@ plt.show()
 
 #sepal length sepal width scatterplot
 sns.set_style("whitegrid") # add background grid and set style
-sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","sepal width in cm").add_legend()
+sns.FacetGrid(irisData, hue="Species", height=4).map(plt.scatter,"sepal length in cm","sepal width in cm").add_legend()
 # Facet grid shows conditional relationships. Hue specifies what variable sets the color coding of the plot. 
 #.map sets the type of plot and then columns for the x and y axis. Legend had to be added to explain what the colors represent.
 plt.title("Examining Sepal Length and Sepal Width Correlation")
@@ -177,7 +172,7 @@ plt.show()
 
 #sepal length petal width scatterplot
 sns.set_style("whitegrid")
-sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","petal length in cm").add_legend()
+sns.FacetGrid(irisData, hue="Species", height=4).map(plt.scatter,"sepal length in cm","petal length in cm").add_legend()
 plt.title("Examining Sepal Length and Petal Length Correlation")
 plt.subplots_adjust(top=0.88)
 plt.savefig("scatter_sl_pl.png")
@@ -185,7 +180,7 @@ plt.show()
 
 #sepal length petal width scatterplot
 sns.set_style("whitegrid")
-sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal length in cm","petal width in cm").add_legend()
+sns.FacetGrid(irisData, hue="Species", height=4).map(plt.scatter,"sepal length in cm","petal width in cm").add_legend()
 plt.title("Examining Sepal Length and Petal Width Correlation")
 plt.subplots_adjust(top=0.88)
 plt.savefig("scatter_sl_pw.png")
@@ -193,7 +188,7 @@ plt.show()
 
 #sepal width petal length scatterplot
 sns.set_style("whitegrid")
-sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal width in cm","petal length in cm").add_legend()
+sns.FacetGrid(irisData, hue="Species", height=4).map(plt.scatter,"sepal width in cm","petal length in cm").add_legend()
 plt.title("Examining Sepal Width and Petal Length Correlation")
 plt.subplots_adjust(top=0.88)
 plt.savefig("scatter_sw_pl.png")
@@ -201,7 +196,7 @@ plt.show()
 
 #sepal width petal width scatterplot
 sns.set_style("whitegrid")
-sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"sepal width in cm","petal width in cm").add_legend()
+sns.FacetGrid(irisData, hue="Species", height=4).map(plt.scatter,"sepal width in cm","petal width in cm").add_legend()
 plt.title("Examining Sepal Width and Petal Width Correlation")
 plt.subplots_adjust(top=0.88)
 plt.savefig("scatter_sw_pw.png")
@@ -209,7 +204,7 @@ plt.show()
 
 #petal length petal width
 sns.set_style("whitegrid")
-sns.FacetGrid(irisData, hue="Species", size=4).map(plt.scatter,"petal length in cm","petal width in cm").add_legend()
+sns.FacetGrid(irisData, hue="Species", height=4).map(plt.scatter,"petal length in cm","petal width in cm").add_legend()
 plt.title("Examining Petal Length and Petal Width Correlation")
 plt.subplots_adjust(top=0.88)
 plt.savefig("scatter_pl_pw.png")
